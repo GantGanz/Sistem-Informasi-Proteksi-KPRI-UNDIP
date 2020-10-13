@@ -1,0 +1,24 @@
+body {
+    background-image: url("../img/chevron.png");
+    padding-top: 5%;
+}
+
+.formcontainer {
+    background-color: white;
+}
+
+.navbar-brand:hover {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.navbar-brand {
+    margin-left: 0.75%;
+}
+
+.kembali {
+    float: right;
+    position: relative;
+    /* margin-right: 8.5%; */
+    margin-top: -6.8%;
+    z-index: 11;
+}

@@ -1,0 +1,65 @@
+body {
+    background-image: url("../img/chevron.png");
+    padding-top: 5%;
+}
+
+.table {
+    background-color: white;
+    font-size: smaller;
+}
+
+.judul {
+    font-weight: bold;
+}
+
+thead {
+    text-align: center;
+}
+
+.fa-trash-alt {
+    font-size: 125%;
+    color: red;
+}
+
+.fa-trash-alt:hover {
+    color: black;
+}
+
+.halamanSekarang {
+    font-weight: bold;
+    color: blueviolet;
+}
+
+.tombolHalaman {
+    margin-top: -0.7%;
+    font-size: x-large;
+}
+
+.back,
+.next {
+    font-size: xx-large;
+}
+
+.invi {
+    color: rgba(0, 0, 0, 0);
+}
+
+.navbar-brand {
+    margin-left: 0.75%;
+}
+
+.navbar-brand:hover {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.logo_koperasi {
+    width: 7%;
+    position: absolute;
+    margin-left: 1%;
+}
+
+.kembali {
+    float: right;
+    margin-right: 8.5%;
+    margin-top: -4.5%;
+}

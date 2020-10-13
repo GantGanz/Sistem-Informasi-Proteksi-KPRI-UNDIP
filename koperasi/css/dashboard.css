@@ -1,0 +1,23 @@
+.gambarkartu {
+    width: 30%;
+}
+
+body {
+    background-image: url("../img/chevron.png");
+    padding-top: 5%;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    color: #333;
+    background-color: #333;
+}
+
+.invi {
+    color: rgba(0, 0, 0, 0);
+}
+
+.navbar-brand {
+    margin-left: 0.75%;
+}
