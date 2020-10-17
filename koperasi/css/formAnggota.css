@@ -1,24 +1,25 @@
 body {
-    background-image: url("../img/chevron.png");
-    padding-top: 5%;
+  background-image: url("../img/chevron.png");
+  padding-top: 5%;
 }
 
 .formcontainer {
-    background-color: white;
-}
-
-.navbar-brand:hover {
-    color: rgba(255, 255, 255, 0.8) !important;
+  background-color: white;
 }
 
 .navbar-brand {
-    margin-left: 1.5%;
+  margin-left: 1.5%;
+}
+
+.navbar-brand:hover {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .kembali {
-    float: right;
-    position: relative;
-    /* margin-right: 8.5%; */
-    margin-top: -6.5%;
-    z-index: 11;
+  float: right;
+  position: relative;
+
+  /* margin-right: 8.5%; */
+  margin-top: -6.5%;
+  z-index: 11;
 }
