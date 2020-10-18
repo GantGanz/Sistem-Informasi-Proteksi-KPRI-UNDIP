@@ -121,7 +121,7 @@ $daftar_fakultas = query("SELECT * FROM fakultas");
             <label for="FUnitFakultas">Unit Fakultas : </label>
             <select id="FUnitFakultas" class="form-control" name="fakultas">
               <?php foreach ($daftar_fakultas as $row) : ?>
-                <option value="<?= $row["nama"]; ?>"><?= $row["nama"]; ?></option>
+                <option value="<?= filter_var($row["nama"]); ?>"><?= filter_var($row["nama"]); ?></option>
               <?php endforeach ?>
             </select>
           </div>

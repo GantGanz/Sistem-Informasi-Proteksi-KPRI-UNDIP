@@ -241,18 +241,18 @@ function tambahPemasukan($data)
     $ada = false;
     $persentase = 0;
     foreach ($kemungkinan as $row) {
-        if ($nominal >= $row["min"] && $row["max"] >= $nominal) {
-            $persentase = $row["persentase"];
+        if ($nominal >= filter_var($row["min"]) && filter_var($row["max"]) >= $nominal) {
+            $persentase = filter_var($row["persentase"]);
         } else if ($row["max"] <= $nominal) {
-            $persentase = $row["persentase"];
+            $persentase = filter_var($row["persentase"]);
         }
     }
     if ($ada == false) {
         foreach ($kemungkinan2 as $row) {
-            if ($nominal >= $row["min"] && $row["max"] >= $nominal) {
-                $persentase = $row["persentase"];
-            } else if ($row["max"] <= $nominal) {
-                $persentase = $row["persentase"];
+            if ($nominal >= filter_var($row["min"]) && $row["max"] >= $nominal) {
+                $persentase = filter_var($row["persentase"]);
+            } else if (filter_var($row["max"]) <= $nominal) {
+                $persentase = filter_var($row["persentase"]);
             }
         }
     }
@@ -284,15 +284,15 @@ function updatePemasukkan($data)
     $kemungkinan2 = cariPersentaseAkhir();
     $ada = false;
     foreach ($kemungkinan as $row) {
-        if ($nominal >= $row["min"] && $row["max"] >= $nominal) {
-            $persentase = $row["persentase"];
+        if ($nominal >= filter_var($row["min"]) && filter_var($row["max"]) >= $nominal) {
+            $persentase = filter_var($row["persentase"]);
             $ada = true;
         }
     }
     if ($ada == false) {
         foreach ($kemungkinan2 as $row) {
-            if ($nominal >= $row["min"] && $row["max"] >= $nominal) {
-                $persentase = $row["persentase"];
+            if ($nominal >= filter_var($row["min"]) && filter_var($row["max"]) >= $nominal) {
+                $persentase = filter_var($row["persentase"]);
             }
         }
     }

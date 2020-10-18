@@ -169,20 +169,20 @@ if (isset($_POST["cari"])) {
                 ?>
                 <?php foreach ($pengeluaran as $row) : ?>
                     <tr>
-                        <th><?= $i; ?></th>
-                        <td><?= $row["nama"]; ?></td>
-                        <td><?= $row["fakultas"]; ?></td>
-                        <td><?= $row["no_anggota"]; ?></td>
-                        <td><?= $row["tgl_cair"]; ?></td>
+                        <th><?= filter_var($i); ?></th>
+                        <td><?= filter_var($row["nama"]); ?></td>
+                        <td><?= filter_var($row["fakultas"]); ?></td>
+                        <td><?= filter_var($row["no_anggota"]); ?></td>
+                        <td><?= filter_var($row["tgl_cair"]); ?></td>
                         <?php
-                        $angka = $row["nominal_cair"];
+                        $angka = filter_var($row["nominal_cair"]);
                         $angka_format = number_format($angka, 2, ",", ".");
                         ?>
                         <td>Rp<?= $angka_format; ?></td>
-                        <td><?= $row["nama_penerima"]; ?></td>
-                        <td><?= $row["status"]; ?></td>
-                        <td><a href="updatePengeluaran.php?id=<?= $row["id"]; ?>"><i class="d-flex justify-content-center fas fa-pencil-alt"></i></a></td>
-                        <td><a href="pengeluaran.php?id=<?= $row["id"]; ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="fas fa-trash-alt d-flex justify-content-center"></i></a></td>
+                        <td><?= filter_var($row["nama_penerima"]); ?></td>
+                        <td><?= filter_var($row["status"]); ?></td>
+                        <td><a href="updatePengeluaran.php?id=<?= filter_var($row["id"]); ?>"><i class="d-flex justify-content-center fas fa-pencil-alt"></i></a></td>
+                        <td><a href="pengeluaran.php?id=<?= filter_var($row["id"]); ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="fas fa-trash-alt d-flex justify-content-center"></i></a></td>
                     </tr>
                     <?php $i++ ?>
                 <?php endforeach ?>

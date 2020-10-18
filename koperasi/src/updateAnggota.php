@@ -129,7 +129,7 @@ $daftar_fakultas = query("SELECT * FROM fakultas");
             <label for="FUnitFakultas">Unit Fakultas : </label>
             <select id="FUnitFakultas" class="form-control" name="fakultas" value="<?= $anggota["fakultas"]; ?>">
               <?php foreach ($daftar_fakultas as $row) : ?>
-                <option value="<?= $row["nama"]; ?>" <?php if ($row["nama"] == $anggota["fakultas"]) : ?> selected="selected" <?php endif; ?>><?= $row["nama"]; ?></option>
+                <option value="<?= filter_var($row["nama"]); ?>" <?php if (filter_var($row["nama"]) == $anggota["fakultas"]) : ?> selected="selected" <?php endif; ?>><?= filter_var($row["nama"]); ?></option>
               <?php endforeach ?>
             </select>
           </div>

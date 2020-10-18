@@ -212,19 +212,19 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                     <?php foreach ($unionPemasukan as $row) : ?>
                         <?php
                         if ($bulanNow == null) {
-                            $bulanBefore = explode("-", $row["tanggal"])[1];
+                            $bulanBefore = explode("-", filter_var($row["tanggal"]))[1];
                         } else {
                             $bulanBefore = $bulanNow;
                         }
-                        $bulanNow = explode("-", $row["tanggal"])[1];
+                        $bulanNow = explode("-", filter_var($row["tanggal"]))[1];
                         if ($tahunNow == null) {
-                            $tahunBefore = explode("-", $row["tanggal"])[0];
+                            $tahunBefore = explode("-", filter_var($row["tanggal"]))[0];
                         } else {
                             $tahunBefore = $tahunNow;
                         }
-                        $tahunNow = explode("-", $row["tanggal"])[0];
+                        $tahunNow = explode("-", filter_var($row["tanggal"]))[0];
                         if ($bulanBefore == $bulanNow && $tahunBefore == $tahunNow) {
-                            $pemasukanBulanan = $pemasukanBulanan + $row["jumlah"] + $jumlahSementara;
+                            $pemasukanBulanan = $pemasukanBulanan + filter_var($row["jumlah"]) + $jumlahSementara;
                             $jumlahSementara = 0;
                         } else { ?>
                             <?php if ($pemasukanBulanan == 0) { ?>
@@ -242,14 +242,14 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                                 </tr>
                             <?php }
                             $i++;
-                            $jumlahSementara = $row["jumlah"];
+                            $jumlahSementara = filter_var($row["jumlah"]);
                             $totalPemasukan = $totalPemasukan + $pemasukanBulanan + $satu;
                             $pemasukanBulanan = 0;
-                            $satu = $row["jumlah"]; ?>
+                            $satu = filter_var($row["jumlah"]); ?>
                         <?php } ?>
                         <?php if ($x == sizeof($unionPemasukan)) { ?>
                             <?php if ($pemasukanBulanan == 0) {
-                                $pemasukanBulanan = $row["jumlah"];
+                                $pemasukanBulanan = filter_var($row["jumlah"]);
                             } ?>
                             <tr>
                                 <th class="text-center"><?= $i; ?></th>
@@ -288,19 +288,19 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                     <?php foreach ($unionPengeluaran as $row) : ?>
                         <?php
                         if ($bulanNow == null) {
-                            $bulanBefore = explode("-", $row["tanggal"])[1];
+                            $bulanBefore = explode("-", filter_var($row["tanggal"]))[1];
                         } else {
                             $bulanBefore = $bulanNow;
                         }
-                        $bulanNow = explode("-", $row["tanggal"])[1];
+                        $bulanNow = explode("-", filter_var($row["tanggal"]))[1];
                         if ($tahunNow == null) {
-                            $tahunBefore = explode("-", $row["tanggal"])[0];
+                            $tahunBefore = explode("-", filter_var($row["tanggal"]))[0];
                         } else {
                             $tahunBefore = $tahunNow;
                         }
-                        $tahunNow = explode("-", $row["tanggal"])[0];
+                        $tahunNow = explode("-", filter_var($row["tanggal"]))[0];
                         if ($bulanBefore == $bulanNow && $tahunBefore == $tahunNow) {
-                            $pengeluaranBulanan = $pengeluaranBulanan + $row["jumlah"] + $jumlahSementara;
+                            $pengeluaranBulanan = $pengeluaranBulanan + filter_var($row["jumlah"]) + $jumlahSementara;
                             $jumlahSementara = 0;
                         } else { ?>
                             <?php if ($pengeluaranBulanan == 0) { ?>
@@ -318,14 +318,14 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                                 </tr>
                             <?php }
                             $i++;
-                            $jumlahSementara = $row["jumlah"];
+                            $jumlahSementara = filter_var($row["jumlah"]);
                             $totalPengeluaran = $totalPengeluaran + $pengeluaranBulanan + $satu;
                             $pengeluaranBulanan = 0;
-                            $satu = $row["jumlah"]; ?>
+                            $satu = filter_var($row["jumlah"]); ?>
                         <?php } ?>
                         <?php if ($x == sizeof($unionPengeluaran)) { ?>
                             <?php if ($pengeluaranBulanan == 0) {
-                                $pengeluaranBulanan = $row["jumlah"];
+                                $pengeluaranBulanan = filter_var($row["jumlah"]);
                             } ?>
                             <tr>
                                 <th class="text-center"><?= $i; ?></th>
@@ -421,8 +421,3 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
 </body>
 
 </html>
-
-<!-- id, nama, tempat_lahir, tanggal_lahir, fakultas, rt, rw, desa, kecamatan, kabupaten, provinsi, nip, no_anggota, no_hp, awal, nominal, akhir -->
-<!-- // $angka_format = number_format($totalPengeluaran, 2, ",", ".");
-// $saldo_akhir = $saldo["nominal"] + $jumlah;
-// if ($saldo_akhir < 0) { // $negativ2=true; // } // $saldo_format=number_format(abs($saldo_akhir), 2, "," , "." ); <p>Saldo Sekarang : <span class="invi">12345678901234</span> <?php echo $negativ2 ? '-' : ''; ?>Rp<?= $saldo_format; ?></p> -->

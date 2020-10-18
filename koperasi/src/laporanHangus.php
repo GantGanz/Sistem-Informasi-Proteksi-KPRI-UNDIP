@@ -149,15 +149,15 @@ $pemasukan = query("SELECT * FROM pemasukan");
                 $total = 0;
                 $angka_format = '0,00'; ?>
                 <?php foreach ($pemasukan as $row) : ?>
-                    <?php if ($row["akhir"] < date("Y-m-d")) { ?>
+                    <?php if (filter_var($row["akhir"]) < date("Y-m-d")) { ?>
                         <tr>
-                            <th><?= $i; ?></th>
-                            <td><?= $row["nama"]; ?></td>
-                            <td><?= $row["fakultas"]; ?></td>
-                            <td><?= $row["no_anggota"]; ?></td>
+                            <th><?= filter_var($i); ?></th>
+                            <td><?= filter_var($row["nama"]); ?></td>
+                            <td><?= filter_var($row["fakultas"]); ?></td>
+                            <td><?= filter_var($row["no_anggota"]); ?></td>
                             <?php
-                            $angka2 = $row["nominal_akhir"];
-                            $total = $total + $row["nominal_akhir"];
+                            $angka2 = filter_var($row["nominal_akhir"]);
+                            $total = $total + filter_var($row["nominal_akhir"]);
                             $angka_format2 = number_format($angka2, 2, ",", ".");
                             $angka_format = number_format($total, 2, ",", ".");
                             ?>

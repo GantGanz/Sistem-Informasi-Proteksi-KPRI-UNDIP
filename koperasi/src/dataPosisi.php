@@ -203,10 +203,10 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                     </tr>
                     <?php foreach ($unionPemasukan as $row) : ?>
                         <tr>
-                            <td><?= $row["tanggal"]; ?></td>
-                            <td><?= $row["nama"]; ?></td>
+                            <td><?= filter_var($row["tanggal"]); ?></td>
+                            <td><?= filter_var($row["nama"]); ?></td>
                             <?php
-                            $angka = $row["jumlah"];
+                            $angka = filter_var($row["jumlah"]);
                             $totalPemasukan = $totalPemasukan + $angka;
                             $angka_format = number_format($angka, 2, ",", ".");
                             ?>
@@ -229,10 +229,10 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                 <tbody>
                     <?php foreach ($unionPengeluaran as $row) : ?>
                         <tr>
-                            <td><?= $row["tanggal"]; ?></td>
-                            <td><?= $row["nama"]; ?></td>
+                            <td><?= filter_var($row["tanggal"]); ?></td>
+                            <td><?= filter_var($row["nama"]); ?></td>
                             <?php
-                            $angka = $row["jumlah"];
+                            $angka = filter_var($row["jumlah"]);
                             $totalPengeluaran = $totalPengeluaran + $angka;
                             $angka_format = number_format($angka, 2, ",", ".");
                             ?>
@@ -320,8 +320,3 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
 </body>
 
 </html>
-
-<!-- id, nama, tempat_lahir, tanggal_lahir, fakultas, rt, rw, desa, kecamatan, kabupaten, provinsi, nip, no_anggota, no_hp, awal, nominal, akhir -->
-<!-- // $angka_format = number_format($totalPengeluaran, 2, ",", ".");
-// $saldo_akhir = $saldo["nominal"] + $jumlah;
-// if ($saldo_akhir < 0) { // $negativ2=true; // } // $saldo_format=number_format(abs($saldo_akhir), 2, "," , "." ); <p>Saldo Sekarang : <span class="invi">12345678901234</span> <?php echo $negativ2 ? '-' : ''; ?>Rp<?= $saldo_format; ?></p> -->

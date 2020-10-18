@@ -209,13 +209,13 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                     <?php foreach ($unionPemasukan as $row) : ?>
                         <?php
                         if ($tahunNow == null) {
-                            $tahunBefore = explode("-", $row["tanggal"])[0];
+                            $tahunBefore = explode("-", filter_var($row["tanggal"]))[0];
                         } else {
                             $tahunBefore = $tahunNow;
                         }
-                        $tahunNow = explode("-", $row["tanggal"])[0];
+                        $tahunNow = explode("-", filter_var($row["tanggal"]))[0];
                         if ($tahunBefore == $tahunNow) {
-                            $pemasukanTahunan = $pemasukanTahunan + $row["jumlah"] + $jumlahSementara;
+                            $pemasukanTahunan = $pemasukanTahunan + filter_var($row["jumlah"]) + $jumlahSementara;
                             $jumlahSementara = 0;
                         } else { ?>
                             <?php if ($pemasukanTahunan == 0) { ?>
@@ -233,14 +233,14 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                                 </tr>
                             <?php }
                             $i++;
-                            $jumlahSementara = $row["jumlah"];
+                            $jumlahSementara = filter_var($row["jumlah"]);
                             $totalPemasukan = $totalPemasukan + $pemasukanTahunan + $satu;
                             $pemasukanTahunan = 0;
-                            $satu = $row["jumlah"]; ?>
+                            $satu = filter_var($row["jumlah"]); ?>
                         <?php } ?>
                         <?php if ($x == sizeof($unionPemasukan)) { ?>
                             <?php if ($pemasukanTahunan == 0) {
-                                $pemasukanTahunan = $row["jumlah"];
+                                $pemasukanTahunan = filter_var($row["jumlah"]);
                             } ?>
                             <tr>
                                 <th class="text-center"><?= $i; ?></th>
@@ -277,13 +277,13 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                     <?php foreach ($unionPengeluaran as $row) : ?>
                         <?php
                         if ($tahunNow == null) {
-                            $tahunBefore = explode("-", $row["tanggal"])[0];
+                            $tahunBefore = explode("-", filter_var($row["tanggal"]))[0];
                         } else {
                             $tahunBefore = $tahunNow;
                         }
-                        $tahunNow = explode("-", $row["tanggal"])[0];
+                        $tahunNow = explode("-", filter_var($row["tanggal"]))[0];
                         if ($tahunBefore == $tahunNow) {
-                            $pengeluaranTahunan = $pengeluaranTahunan + $row["jumlah"] + $jumlahSementara;
+                            $pengeluaranTahunan = $pengeluaranTahunan + filter_var($row["jumlah"]) + $jumlahSementara;
                             $jumlahSementara = 0;
                         } else { ?>
                             <?php if ($pengeluaranTahunan == 0) { ?>
@@ -301,14 +301,14 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                                 </tr>
                             <?php }
                             $i++;
-                            $jumlahSementara = $row["jumlah"];
+                            $jumlahSementara = filter_var($row["jumlah"]);
                             $totalPengeluaran = $totalPengeluaran + $pengeluaranTahunan + $satu;
                             $pengeluaranTahunan = 0;
-                            $satu = $row["jumlah"]; ?>
+                            $satu = filter_var($row["jumlah"]); ?>
                         <?php } ?>
                         <?php if ($x == sizeof($unionPengeluaran)) { ?>
                             <?php if ($pengeluaranTahunan == 0) {
-                                $pengeluaranTahunan = $row["jumlah"];
+                                $pengeluaranTahunan = filter_var($row["jumlah"]);
                             } ?>
                             <tr>
                                 <th class="text-center"><?= $i; ?></th>

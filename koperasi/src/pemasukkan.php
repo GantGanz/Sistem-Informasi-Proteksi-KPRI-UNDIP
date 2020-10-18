@@ -190,28 +190,28 @@ if (isset($_POST["cari"])) {
                 ?>
                 <?php foreach ($pemasukan as $row) : ?>
                     <tr>
-                        <th><?= $i; ?></th>
-                        <td><?= $row["nama"]; ?></td>
-                        <td><?= $row["fakultas"]; ?></td>
-                        <td><?= $row["no_anggota"]; ?></td>
-                        <td><?= $row["awal"]; ?></td>
-                        <td><?= $row["akhir"]; ?></td>
+                        <th><?= filter_var($i); ?></th>
+                        <td><?= filter_var($row["nama"]); ?></td>
+                        <td><?= filter_var($row["fakultas"]); ?></td>
+                        <td><?= filter_var($row["no_anggota"]); ?></td>
+                        <td><?= filter_var($row["awal"]); ?></td>
+                        <td><?= filter_var($row["akhir"]); ?></td>
                         <?php
-                        $angka = $row["nominal"];
+                        $angka = filter_var($row["nominal"]);
                         $angka_format = number_format($angka, 2, ",", ".");
-                        $angka2 = $row["nominal_akhir"];
+                        $angka2 = filter_var($row["nominal_akhir"]);
                         $angka_format2 = number_format($angka2, 2, ",", ".");
                         $berlaku = 'Tidak';
-                        if ($row["akhir"] >= date("Y-m-d")) {
+                        if (filter_var($row["akhir"]) >= date("Y-m-d")) {
                             $berlaku = 'Ya';
                         }
                         ?>
                         <td>Rp<?= $angka_format; ?></td>
-                        <td><?= $row["persentase"]; ?></td>
+                        <td><?= filter_var($row["persentase"]); ?></td>
                         <td>Rp<?= $angka_format2; ?></td>
                         <td><?= $berlaku; ?></td>
-                        <td class="printInv"><a href="updatePemasukan.php?id=<?= $row["id"]; ?>"><i class=" fas fa-pencil-alt"></i></a></td>
-                        <td class="printInv"><a href="pemasukkan.php?id=<?= $row["id"]; ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="fas fa-trash-alt d-flex justify-content-center"></i></a></td>
+                        <td class="printInv"><a href="updatePemasukan.php?id=<?= filter_var($row["id"]); ?>"><i class=" fas fa-pencil-alt"></i></a></td>
+                        <td class="printInv"><a href="pemasukkan.php?id=<?= filter_var($row["id"]); ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="fas fa-trash-alt d-flex justify-content-center"></i></a></td>
                     </tr>
                     <?php $i++ ?>
                 <?php endforeach ?>

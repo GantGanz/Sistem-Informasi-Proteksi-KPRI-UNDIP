@@ -107,10 +107,10 @@ $daftar_anggota = query("SELECT * FROM anggota ORDER BY nama");
         <select id="id" class="form-control" name="ida" value="<?= $pengeluaran["id"]; ?>">
           <?php foreach ($daftar_anggota as $row) : ?>
             <?php
-            $angka = $row["nominal"];
+            $angka = filter_var($row["nominal"]);
             $angka_format = number_format($angka, 2, ",", ".");
             ?>
-            <option value="<?= $row["id"]; ?>"><?= $row["nama"]; ?> ; <?= $row["fakultas"]; ?> ; <?= $row["no_anggota"]; ?></option>
+            <option value="<?= filter_var($row["id"]); ?>"><?= filter_var($row["nama"]); ?> ; <?= filter_var($row["fakultas"]); ?> ; <?= filter_var($row["no_anggota"]); ?></option>
           <?php endforeach ?>
         </select>
       </div>

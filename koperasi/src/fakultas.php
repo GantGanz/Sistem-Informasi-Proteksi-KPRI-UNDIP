@@ -194,10 +194,10 @@ if (isset($_POST["cari"])) {
                 <?php $i = 1; ?>
                 <?php foreach ($fakultas as $row) : ?>
                     <tr>
-                        <th class="d-flex justify-content-center"><?= $i; ?></th>
-                        <td><?= $row["nama"]; ?></td>
-                        <td><a href="fakultas.php?uid=<?= $row["id"]; ?>"><i class="d-flex justify-content-center fas fa-pencil-alt"></i></a></td>
-                        <td><a href="fakultas.php?id=<?= $row["id"]; ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="d-flex justify-content-center fas fa-trash-alt"></i></a></td>
+                        <th class="d-flex justify-content-center"><?= filter_var($i); ?></th>
+                        <td><?= filter_var($row["nama"]); ?></td>
+                        <td><a href="fakultas.php?uid=<?= filter_var($row["id"]); ?>"><i class="d-flex justify-content-center fas fa-pencil-alt"></i></a></td>
+                        <td><a href="fakultas.php?id=<?= filter_var($row["id"]); ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="d-flex justify-content-center fas fa-trash-alt"></i></a></td>
                     </tr>
                     <?php $i++ ?>
                 <?php endforeach ?>

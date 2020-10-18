@@ -164,17 +164,17 @@ if (isset($_POST["cari"])) {
                 ?>
                 <?php foreach ($anggota as $row) : ?>
                     <tr>
-                        <th><?= $i; ?></th>
-                        <td><?= $row["tanggal"]; ?></td>
-                        <td><?= $row["keterangan"]; ?></td>
-                        <td><?= $row["kode"]; ?></td>
+                        <th><?= filter_var($i); ?></th>
+                        <td><?= filter_var($row["tanggal"]); ?></td>
+                        <td><?= filter_var($row["keterangan"]); ?></td>
+                        <td><?= filter_var($row["kode"]); ?></td>
                         <?php
-                        $angka = $row["jumlah"];
+                        $angka = filter_var($row["jumlah"]);
                         $angka_format = number_format($angka, 2, ",", ".");
                         ?>
                         <td>Rp<?= $angka_format; ?></td>
-                        <td><a href="updateMutasi.php?id=<?= $row["id"]; ?>"><i class=" fas fa-pencil-alt"></i></a></td>
-                        <td><a href="mutasi.php?id=<?= $row["id"]; ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="fas fa-trash-alt"></i></a></td>
+                        <td><a href="updateMutasi.php?id=<?= filter_var($row["id"]); ?>"><i class=" fas fa-pencil-alt"></i></a></td>
+                        <td><a href="mutasi.php?id=<?= filter_var($row["id"]); ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="fas fa-trash-alt"></i></a></td>
                     </tr>
                     <?php $i++ ?>
                 <?php endforeach ?>
@@ -195,5 +195,3 @@ if (isset($_POST["cari"])) {
 </body>
 
 </html>
-
-<!-- id, nama, tempat_lahir, tanggal_lahir, fakultas, rt, rw, desa, kecamatan, kabupaten, provinsi, nip, no_anggota, no_hp, awal, nominal, akhir -->

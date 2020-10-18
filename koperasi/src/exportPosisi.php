@@ -46,10 +46,10 @@ header("Expires: 0");
         <tbody>
             <?php foreach ($pemasukkan as $row) : ?>
                 <tr>
-                    <td><?= $row["awal"]; ?></td>
-                    <td><?= $row["nama"]; ?></td>
+                    <td><?= filter_var($row["awal"]); ?></td>
+                    <td><?= filter_var($row["nama"]); ?></td>
                     <?php
-                    $angka = $row["nominal_akhir"];
+                    $angka = filter_var($row["nominal_akhir"]);
                     $totalPemasukan = $totalPemasukan + $angka;
                     $angka_format = number_format($angka, 2, ",", ".");
                     ?>
@@ -72,10 +72,10 @@ header("Expires: 0");
         <tbody>
             <?php foreach ($pengeluaran as $row) : ?>
                 <tr>
-                    <td><?= $row["tgl_cair"]; ?></td>
-                    <td><?= $row["nama"]; ?></td>
+                    <td><?= filter_var($row["tgl_cair"]); ?></td>
+                    <td><?= filter_var($row["nama"]); ?></td>
                     <?php
-                    $angka = $row["nominal_cair"];
+                    $angka = filter_var($row["nominal_cair"]);
                     $totalPengeluaran = $totalPengeluaran + $angka;
                     $angka_format = number_format($angka, 2, ",", ".");
                     ?>

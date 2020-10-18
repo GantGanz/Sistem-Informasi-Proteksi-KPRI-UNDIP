@@ -107,7 +107,7 @@ $daftar_anggota = query("SELECT * FROM anggota ORDER BY nama");
         <label for="identitas">Identitas (Nama; Fakultas; No. Anggota) : </label>
         <select id="id" class="form-control" name="id" value="<?= $pemasukkan["nama"]; ?> ; <?= $pemasukkan["fakultas"]; ?> ; <?= $pemasukkan["no_anggota"]; ?>">
           <?php foreach ($daftar_anggota as $row) : ?>
-            <option value="<?= $row["id"]; ?>" <?php if ($row["no_anggota"] == $pemasukkan["no_anggota"]) : ?> selected="selected" <?php endif; ?>><?= $row["nama"]; ?> ; <?= $row["fakultas"]; ?> ; <?= $row["no_anggota"]; ?></option>
+            <option value="<?= filter_var($row["id"]); ?>" <?php if (filter_var($row["no_anggota"]) == $pemasukkan["no_anggota"]) : ?> selected="selected" <?php endif; ?>><?= filter_var($row["nama"]); ?> ; <?= filter_var($row["fakultas"]); ?> ; <?= filter_var($row["no_anggota"]); ?></option>
           <?php endforeach ?>
         </select>
       </div>

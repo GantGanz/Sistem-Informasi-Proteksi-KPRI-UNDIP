@@ -35,12 +35,12 @@ header("Expires: 0");
             <?php $i = 1; ?>
             <?php foreach ($anggota as $row) : ?>
                 <tr>
-                    <th><?= $i; ?></th>
-                    <td><?= $row["tanggal"]; ?></td>
-                    <td><?= $row["keterangan"]; ?></td>
-                    <td><?= $row["kode"]; ?></td>
+                    <th><?= filter_var($i); ?></th>
+                    <td><?= filter_var($row["tanggal"]); ?></td>
+                    <td><?= filter_var($row["keterangan"]); ?></td>
+                    <td><?= filter_var($row["kode"]); ?></td>
                     <?php
-                    $angka = $row["jumlah"];
+                    $angka = filter_var($row["jumlah"]);
                     $angka_format = number_format($angka, 2, ",", ".");
                     ?>
                     <td>Rp<?= $angka_format; ?></td>

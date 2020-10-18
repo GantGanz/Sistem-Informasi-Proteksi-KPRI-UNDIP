@@ -42,20 +42,20 @@ header("Expires: 0");
             <?php $i = 1; ?>
             <?php foreach ($pemasukan as $row) : ?>
                 <tr>
-                    <th><?= $i; ?></th>
-                    <td><?= $row["nama"]; ?></td>
-                    <td><?= $row["fakultas"]; ?></td>
-                    <td><?= $row["no_anggota"]; ?></td>
-                    <td><?= $row["awal"]; ?></td>
-                    <td><?= $row["akhir"]; ?></td>
+                    <th><?= filter_var($i); ?></th>
+                    <td><?= filter_var($row["nama"]); ?></td>
+                    <td><?= filter_var($row["fakultas"]); ?></td>
+                    <td><?= filter_var($row["no_anggota"]); ?></td>
+                    <td><?= filter_var($row["awal"]); ?></td>
+                    <td><?= filter_var($row["akhir"]); ?></td>
                     <?php
-                    $angka = $row["nominal"];
+                    $angka = filter_var($row["nominal"]);
                     $angka_format = number_format($angka, 2, ",", ".");
-                    $angka2 = $row["nominal_akhir"];
+                    $angka2 = filter_var($row["nominal_akhir"]);
                     $angka_format2 = number_format($angka2, 2, ",", ".");
                     ?>
                     <td>Rp<?= $angka_format; ?></td>
-                    <td><?= $row["persentase"]; ?></td>
+                    <td><?= filter_var($row["persentase"]); ?></td>
                     <td>Rp<?= $angka_format2; ?></td>
                 </tr>
                 <?php $i++ ?>

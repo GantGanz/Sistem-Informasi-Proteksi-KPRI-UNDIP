@@ -143,19 +143,19 @@ if (isset($_POST["cari"])) {
                 <?php $i = 1; ?>
                 <?php foreach ($persentase as $row) : ?>
                     <tr>
-                        <th class="d-flex justify-content-center"><?= $i; ?></th>
-                        <td><?= $row["tahun"]; ?></td>
-                        <td><?= $row["persentase"]; ?></td>
+                        <th class="d-flex justify-content-center"><?= filter_var($i); ?></th>
+                        <td><?= filter_var($row["tahun"]); ?></td>
+                        <td><?= filter_var($row["persentase"]); ?></td>
                         <?php
-                        $angka = $row["min"];
+                        $angka = filter_var($row["min"]);
                         $angka_format = number_format($angka, 2, ",", ".");
-                        $angka2 = $row["max"];
+                        $angka2 = filter_var($row["max"]);
                         $angka_format2 = number_format($angka2, 2, ",", ".");
                         ?>
                         <td>Rp<?= $angka_format; ?></td>
                         <td>Rp<?= $angka_format2; ?></td>
-                        <td><a href="updatePersentase.php?id=<?= $row["id"]; ?>"><i class="d-flex justify-content-center fas fa-pencil-alt"></i></a></td>
-                        <td><a href="persentase.php?id=<?= $row["id"]; ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="d-flex justify-content-center fas fa-trash-alt"></i></a></td>
+                        <td><a href="updatePersentase.php?id=<?= filter_var($row["id"]); ?>"><i class="d-flex justify-content-center fas fa-pencil-alt"></i></a></td>
+                        <td><a href="persentase.php?id=<?= filter_var($row["id"]); ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="d-flex justify-content-center fas fa-trash-alt"></i></a></td>
                     </tr>
                     <?php $i++ ?>
                 <?php endforeach ?>
