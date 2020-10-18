@@ -8,20 +8,20 @@ if (!isset($_SESSION["login"])) {
 require 'functions.php';
 
 if (isset($_POST["masuk"])) {
-    $_SESSION["awal"] = $_POST["awal"];
-    $_SESSION["akhir"] = $_POST["akhir"];
+    $_SESSION["awal"] = filter_input(INPUT_POST, 'awal');
+    $_SESSION["akhir"] = filter_input(INPUT_POST, 'akhir');
     header("Location: dataPosisi.php");
     exit;
 }
 if (isset($_POST["masukBulanan"])) {
-    $_SESSION["awalBulan"] = $_POST["awalBulan"];
-    $_SESSION["akhirBulan"] = $_POST["akhirBulan"];
+    $_SESSION["awalBulan"] = filter_input(INPUT_POST, 'awalBulan');
+    $_SESSION["akhirBulan"] = filter_input(INPUT_POST, 'akhirBulan');
     header("Location: dataPosisiBulanan.php");
     exit;
 }
 if (isset($_POST["masukTahunan"])) {
-    $_SESSION["awalTahun"] = $_POST["awalTahun"];
-    $_SESSION["akhirTahun"] = $_POST["akhirTahun"];
+    $_SESSION["awalTahun"] = filter_input(INPUT_POST, 'awalTahun');
+    $_SESSION["akhirTahun"] = filter_input(INPUT_POST, 'akhirTahun');
     header("Location: dataPosisiTahunan.php");
     exit;
 }
