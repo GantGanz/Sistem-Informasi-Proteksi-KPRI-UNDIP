@@ -10,7 +10,7 @@ require 'functions.php';
 $jumlahDataPerHalaman = 200;
 $jumlahData = count(query("SELECT * FROM pemasukan WHERE akhir < NOW()"));
 $jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
-$halamanAktif = (isset($_GET["halaman"])) ? $_GET["halaman"] : 1;
+$halamanAktif = (isset($_GET["halaman"])) ? filter_input(INPUT_GET, 'awalBulan') : 1;
 $awalData = ($jumlahDataPerHalaman * $halamanAktif) - $jumlahDataPerHalaman;
 $pemasukan = query("SELECT * FROM pemasukan WHERE akhir < NOW() LIMIT $awalData, $jumlahDataPerHalaman");
 ?>
@@ -42,7 +42,7 @@ $pemasukan = query("SELECT * FROM pemasukan WHERE akhir < NOW() LIMIT $awalData,
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Selamat Datang, <?= $_SESSION["username"]; ?><span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#">Selamat Datang, <?= filter_input(INPUT_SESSION, 'username'); ?><span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link ml-3" href="dataAnggota.php"><i class="fas fa-users"></i></a>
@@ -78,7 +78,7 @@ $pemasukan = query("SELECT * FROM pemasukan WHERE akhir < NOW() LIMIT $awalData,
 
     <?php
     if (isset($_GET["id"])) {
-        $id = $_GET["id"];
+        $id = filter_input(INPUT_GET, 'id');
         if (hapusAlumni($id) > 0) { ?>
             <div class="alert alert-success" role="alert">
                 Data berhasil dihapus.
