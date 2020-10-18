@@ -75,7 +75,7 @@ $daftar_anggota = query("SELECT * FROM anggota ORDER BY nama");
 
   <?php
   if (isset(filter_input(INPUT_POST, 'submit'))) {
-    if (updatePengeluaran($_POST) > 0) { ?>
+    if (updatePengeluaran(filter_input_array(INPUT_POST)) > 0) { ?>
       <div class="alert alert-success" role="alert">
         Data berhasil diupdate. <a href="pengeluaran.php" class="alert-link">Klik disini untuk melihat tabel</a>.
         <a href="" onClick="window.location.href=window.location.href">(Klik disini untuk refresh)</a>

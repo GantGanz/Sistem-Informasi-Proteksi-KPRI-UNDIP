@@ -72,7 +72,7 @@ $daftar_fakultas = query("SELECT * FROM fakultas");
 
   <?php
   if (isset(filter_input(INPUT_POST, 'submit'))) {
-    if (tambah($_POST) > 0) { ?>
+    if (tambah(filter_input_array(INPUT_POST)) > 0) { ?>
       <div class="alert alert-success" role="alert">
         Data berhasil ditambahkan, <a href="dataAnggota.php" class="alert-link">Klik disini untuk melihat tabel</a>.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">

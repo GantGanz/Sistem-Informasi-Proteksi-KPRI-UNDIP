@@ -72,7 +72,7 @@ $mutasi = query("SELECT * FROM mutasi WHERE id = $id")[0];
 
   <?php
   if (isset(filter_input(INPUT_POST, 'submit'))) {
-    if (updateMutasi($_POST) > 0) { ?>
+    if (updateMutasi(filter_input_array(INPUT_POST)) > 0) { ?>
       <div class="alert alert-success" role="alert">
         Data berhasil diupdate. <a href="mutasi.php" class="alert-link">Klik disini untuk melihat tabel</a>.
         <a href="" onClick="window.location.href=window.location.href">(Klik disini untuk refresh)</a>

@@ -77,7 +77,7 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
 
     <?php
     if (isset(filter_input(INPUT_POST, 'tambah'))) {
-        if (tambahFakultas($_POST) > 0) { ?>
+        if (tambahFakultas(filter_input_array(INPUT_POST)) > 0) { ?>
             <div class="alert alert-success" role="alert">
                 Data berhasil ditambahkan.
                 <a href="fakultas.php">(Klik disini untuk refresh)</a>
@@ -126,7 +126,7 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
 
     <?php
     if (isset(filter_input(INPUT_POST, 'update'))) {
-        if (updateFakultas($_POST) > 0) { ?>
+        if (updateFakultas(filter_input_array(INPUT_POST)) > 0) { ?>
             <div class="alert alert-success" role="alert">
                 Data berhasil diupdate.
                 <a href="fakultas.php">(Klik disini untuk refresh)</a>

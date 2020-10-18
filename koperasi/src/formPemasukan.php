@@ -72,7 +72,7 @@ $daftar_anggota = query("SELECT * FROM anggota ORDER BY nama");
 
   <?php
   if (isset(filter_input(INPUT_POST, 'submit'))) {
-    if (tambahPemasukan($_POST) > 0) { ?>
+    if (tambahPemasukan(filter_input_array(INPUT_POST)) > 0) { ?>
       <div class="alert alert-success" role="alert">
         Data berhasil ditambahkan, <a href="pemasukkan.php" class="alert-link">Klik disini untuk melihat tabel</a>.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
