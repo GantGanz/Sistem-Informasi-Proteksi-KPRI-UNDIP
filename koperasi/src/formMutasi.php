@@ -70,7 +70,7 @@ require 'functions.php';
 
   <?php
   if (isset($_POST["submit"])) {
-    if (tambahMutasi($_POST) > 0) { ?>
+    if (tambahMutasi(filter_input_array(INPUT_POST)) > 0) { ?>
       <div class="alert alert-success" role="alert">
         Data berhasil ditambahkan, <a href="mutasi.php" class="alert-link">Klik disini untuk melihat tabel</a>.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
