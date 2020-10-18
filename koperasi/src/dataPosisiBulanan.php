@@ -15,8 +15,8 @@ require 'functions.php';
 
 $namaBulan = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
 
-$awal = $_SESSION["awalBulan"];
-$akhir = $_SESSION["akhirBulan"];
+$awal = filter_input(INPUT_SESSION, 'awalBulan');
+$akhir = filter_input(INPUT_SESSION, 'akhirBulan');
 
 $unionPemasukan = query("(SELECT awal AS tanggal, nama AS nama, nominal_akhir AS jumlah FROM pemasukan WHERE awal >= '$awal' AND awal <= '$akhir')
                         UNION
@@ -96,7 +96,7 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Selamat Datang, <?= $_SESSION["username"]; ?><span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#">Selamat Datang, <?= filter_input(INPUT_SESSION, 'username'); ?><span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link ml-3" href="dataAnggota.php"><i class="fas fa-users"></i></a>

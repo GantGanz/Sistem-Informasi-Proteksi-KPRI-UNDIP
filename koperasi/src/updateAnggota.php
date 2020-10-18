@@ -40,7 +40,7 @@ $daftar_fakultas = query("SELECT * FROM fakultas");
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Selamat Datang, <?= $_SESSION["username"]; ?><span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">Selamat Datang, <?= filter_input(INPUT_SESSION, 'username'); ?><span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link ml-3" href="dataAnggota.php"><i class="fas fa-users"></i></a>
@@ -76,7 +76,7 @@ $daftar_fakultas = query("SELECT * FROM fakultas");
 
   <?php
   if (isset($_POST["submit"])) {
-    if (update($_POST) > 0) { ?>
+    if (update(filter_input_array(INPUT_POST)) > 0) { ?>
       <div class="alert alert-success" role="alert">
         Data berhasil diupdate. <a href="dataAnggota.php" class="alert-link">Klik disini untuk melihat tabel</a>.
         <a href="" onClick="window.location.href=window.location.href">(Klik disini untuk refresh)</a>
