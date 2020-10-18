@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION["login"])) {
+if (!isset(filter_input(INPUT_SESSION, 'login'))) {
     header("Location: login.php");
     exit;
 }
@@ -70,7 +70,7 @@ $pemasukan = query("SELECT * FROM pemasukan WHERE akhir >= NOW()");
                     <li class="nav-item">
                         <a class="nav-link ml-1" href="posisi.php"><i class="fas fa-file-invoice-dollar"></i></a>
                     </li>
-                    <?php if (isset($_SESSION["sadmin"])) { ?>
+                    <?php if (isset(filter_input(INPUT_SESSION, 'sadmin'))) { ?>
                         <li class="nav-item">
                             <a class="nav-link ml-1" href="fakultas.php"><i class="fas fa-hotel"></i></a>
                         </li>
@@ -88,8 +88,8 @@ $pemasukan = query("SELECT * FROM pemasukan WHERE akhir >= NOW()");
     </nav>
 
     <?php
-    if (isset($_GET["id"])) {
-        $id = $_GET["id"];
+    if (isset(filter_input(INPUT_GET, 'id'))) {
+        $id = filter_input(INPUT_GET, 'id');
         if (hapusPemasukan($id) > 0) { ?>
             <div class="alert alert-success" role="alert">
                 Data berhasil dihapus.

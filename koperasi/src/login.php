@@ -1,15 +1,15 @@
 <?php
 session_start();
-if (isset($_SESSION["login"])) {
+if (isset(filter_input(INPUT_SESSION, 'login'))) {
     header("Location: index.php");
     exit;
 }
 
 require 'functions.php';
 
-if (isset($_POST["login"])) {
-    $username = $_POST["username"];
-    $password = $_POST["password"];
+if (isset(filter_input(INPUT_POST, 'login'))) {
+    $username = filter_input(INPUT_POST, 'username');
+    $password = filter_input(INPUT_POST, 'password');
 
     $result = mysqli_query($conn, "SELECT * FROM user WHERE BINARY username = '$username' AND password = '$password'");
 

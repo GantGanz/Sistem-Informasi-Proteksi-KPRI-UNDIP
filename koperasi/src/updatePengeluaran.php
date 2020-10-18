@@ -1,12 +1,12 @@
 <?php
 session_start();
-if (!isset($_SESSION["login"])) {
+if (!isset(filter_input(INPUT_SESSION, 'login'))) {
   header("Location: login.php");
   exit;
 }
 require 'functions.php';
 
-$id = $_GET["id"];
+$id = filter_input(INPUT_GET, 'id');
 $pengeluaran = query("SELECT * FROM pengeluaran WHERE id = $id")[0];
 
 $daftar_anggota = query("SELECT * FROM anggota ORDER BY nama");
@@ -56,7 +56,7 @@ $daftar_anggota = query("SELECT * FROM anggota ORDER BY nama");
           <li class="nav-item">
             <a class="nav-link ml-1" href="posisi.php"><i class="fas fa-file-invoice-dollar"></i></a>
           </li>
-          <?php if (isset($_SESSION["sadmin"])) { ?>
+          <?php if (isset(filter_input(INPUT_SESSION, 'sadmin'))) { ?>
             <li class="nav-item">
               <a class="nav-link ml-1" href="fakultas.php"><i class="fas fa-hotel"></i></a>
             </li>
@@ -74,7 +74,7 @@ $daftar_anggota = query("SELECT * FROM anggota ORDER BY nama");
   </nav>
 
   <?php
-  if (isset($_POST["submit"])) {
+  if (isset(filter_input(INPUT_POST, 'submit'))) {
     if (updatePengeluaran($_POST) > 0) { ?>
       <div class="alert alert-success" role="alert">
         Data berhasil diupdate. <a href="pengeluaran.php" class="alert-link">Klik disini untuk melihat tabel</a>.

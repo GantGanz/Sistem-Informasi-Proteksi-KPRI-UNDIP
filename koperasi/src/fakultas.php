@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION["login"])) {
+if (!isset(filter_input(INPUT_SESSION, 'login'))) {
     header("Location: login.php");
     exit;
 }
@@ -9,7 +9,7 @@ require 'functions.php';
 
 $fakultas = query("SELECT * FROM fakultas");
 
-if (isset($_POST["cari"])) {
+if (isset(filter_input(INPUT_POST, 'cari'))) {
     $fakultas = cari(filter_input(INPUT_POST, 'keyword'));
 }
 ?>
@@ -58,7 +58,7 @@ if (isset($_POST["cari"])) {
                     <li class="nav-item">
                         <a class="nav-link ml-1" href="posisi.php"><i class="fas fa-file-invoice-dollar"></i></a>
                     </li>
-                    <?php if (isset($_SESSION["sadmin"])) { ?>
+                    <?php if (isset(filter_input(INPUT_SESSION, 'sadmin'))) { ?>
                         <li class="nav-item active">
                             <a class="nav-link ml-1" href="fakultas.php"><i class="fas fa-hotel"></i></a>
                         </li>
@@ -76,7 +76,7 @@ if (isset($_POST["cari"])) {
     </nav>
 
     <?php
-    if (isset($_POST["tambah"])) {
+    if (isset(filter_input(INPUT_POST, 'tambah'))) {
         if (tambahFakultas($_POST) > 0) { ?>
             <div class="alert alert-success" role="alert">
                 Data berhasil ditambahkan.
@@ -100,8 +100,8 @@ if (isset($_POST["cari"])) {
     ?>
 
     <?php
-    if (isset($_GET["id"])) {
-        $id = $_GET["id"];
+    if (isset(filter_input(INPUT_GET, 'id'))) {
+        $id = filter_input(INPUT_GET, 'id');
         if (hapusFakultas($id) > 0) { ?>
             <div class="alert alert-success" role="alert">
                 Data berhasil dihapus.
@@ -125,7 +125,7 @@ if (isset($_POST["cari"])) {
     ?>
 
     <?php
-    if (isset($_POST["update"])) {
+    if (isset(filter_input(INPUT_POST, 'update'))) {
         if (updateFakultas($_POST) > 0) { ?>
             <div class="alert alert-success" role="alert">
                 Data berhasil diupdate.
@@ -167,8 +167,8 @@ if (isset($_POST["cari"])) {
         <div class="col-md-6">
             <form action="" method="POST" class="mb-3">
                 <?php
-                if (isset($_GET["uid"])) {
-                    $uid = $_GET["uid"];
+                if (isset(filter_input(INPUT_GET, 'uid'))) {
+                    $uid = filter_input(INPUT_GET, 'uid');
                     $ufakultas = query("SELECT * FROM fakultas WHERE id = $uid")[0];
                 ?>
                     <div class="input-group bm-3">

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION["login"])) {
+if (!isset(filter_input(INPUT_SESSION, 'login'))) {
     header("Location: login.php");
     exit;
 }
@@ -10,7 +10,7 @@ require 'functions.php';
 $jumlahDataPerHalaman = 200;
 $jumlahData = count(query("SELECT * FROM pemasukan WHERE akhir < NOW()"));
 $jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
-$halamanAktif = (isset($_GET["halaman"])) ? filter_input(INPUT_GET, 'awalBulan') : 1;
+$halamanAktif = (isset(filter_input(INPUT_GET, 'halaman'))) ? filter_input(INPUT_GET, 'awalBulan') : 1;
 $awalData = ($jumlahDataPerHalaman * $halamanAktif) - $jumlahDataPerHalaman;
 $pemasukan = query("SELECT * FROM pemasukan WHERE akhir < NOW() LIMIT $awalData, $jumlahDataPerHalaman");
 ?>
@@ -59,7 +59,7 @@ $pemasukan = query("SELECT * FROM pemasukan WHERE akhir < NOW() LIMIT $awalData,
                     <li class="nav-item">
                         <a class="nav-link ml-1" href="posisi.php"><i class="fas fa-file-invoice-dollar"></i></a>
                     </li>
-                    <?php if (isset($_SESSION["sadmin"])) { ?>
+                    <?php if (isset(filter_input(INPUT_SESSION, 'sadmin'))) { ?>
                         <li class="nav-item">
                             <a class="nav-link ml-1" href="fakultas.php"><i class="fas fa-hotel"></i></a>
                         </li>
@@ -77,7 +77,7 @@ $pemasukan = query("SELECT * FROM pemasukan WHERE akhir < NOW() LIMIT $awalData,
     </nav>
 
     <?php
-    if (isset($_GET["id"])) {
+    if (isset(filter_input(INPUT_GET, 'id'))) {
         $id = filter_input(INPUT_GET, 'id');
         if (hapusAlumni($id) > 0) { ?>
             <div class="alert alert-success" role="alert">

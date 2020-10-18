@@ -1,11 +1,11 @@
 <?php
 session_start();
-if (!isset($_SESSION["login"])) {
+if (!isset(filter_input(INPUT_SESSION, 'login'))) {
     header("Location: login.php");
     exit;
 }
-if (!isset($_SESSION["awal"])) {
-    if (!isset($_SESSION["akhir"])) {
+if (!isset(filter_input(INPUT_SESSION, 'awal'))) {
+    if (!isset(filter_input(INPUT_SESSION, 'akhir'))) {
         header("Location: posisi.php");
         exit;
     }
@@ -114,7 +114,7 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                     <li class="nav-item active">
                         <a class="nav-link ml-1" href="posisi.php"><i class="fas fa-file-invoice-dollar"></i></a>
                     </li>
-                    <?php if (isset($_SESSION["sadmin"])) { ?>
+                    <?php if (isset(filter_input(INPUT_SESSION, 'sadmin'))) { ?>
                         <li class="nav-item">
                             <a class="nav-link ml-1" href="fakultas.php"><i class="fas fa-hotel"></i></a>
                         </li>
@@ -132,8 +132,8 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
     </nav>
 
     <?php
-    if (isset($_GET["id"])) {
-        $id = $_GET["id"];
+    if (isset(filter_input(INPUT_GET, 'id'))) {
+        $id = filter_input(INPUT_GET, 'id');
         if (hapus($id) > 0) { ?>
             <div class="alert alert-success" role="alert">
                 Data berhasil dihapus.

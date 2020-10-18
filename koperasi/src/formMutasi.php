@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION["login"])) {
+if (!isset(filter_input(INPUT_SESSION, 'login'))) {
   header("Location: login.php");
   exit;
 }
@@ -69,7 +69,7 @@ require 'functions.php';
   </nav>
 
   <?php
-  if (isset($_POST["submit"])) {
+  if (isset(filter_input(INPUT_POST, 'submit'))) {
     if (tambahMutasi(filter_input_array(INPUT_POST)) > 0) { ?>
       <div class="alert alert-success" role="alert">
         Data berhasil ditambahkan, <a href="mutasi.php" class="alert-link">Klik disini untuk melihat tabel</a>.

@@ -1,25 +1,25 @@
 <?php
 session_start();
-if (!isset($_SESSION["login"])) {
+if (!isset(filter_input(INPUT_SESSION, 'login'))) {
     header("Location: login.php");
     exit;
 }
 
 require 'functions.php';
 
-if (isset($_POST["masuk"])) {
+if (isset(filter_input(INPUT_POST, 'masuk'))) {
     $_SESSION["awal"] = filter_input(INPUT_POST, 'awal');
     $_SESSION["akhir"] = filter_input(INPUT_POST, 'akhir');
     header("Location: dataPosisi.php");
     exit;
 }
-if (isset($_POST["masukBulanan"])) {
+if (isset(filter_input(INPUT_POST, 'masukBulanan'))) {
     $_SESSION["awalBulan"] = filter_input(INPUT_POST, 'awalBulan');
     $_SESSION["akhirBulan"] = filter_input(INPUT_POST, 'akhirBulan');
     header("Location: dataPosisiBulanan.php");
     exit;
 }
-if (isset($_POST["masukTahunan"])) {
+if (isset(filter_input(INPUT_POST, 'masukTahunan'))) {
     $_SESSION["awalTahun"] = filter_input(INPUT_POST, 'awalTahun');
     $_SESSION["akhirTahun"] = filter_input(INPUT_POST, 'akhirTahun');
     header("Location: dataPosisiTahunan.php");
@@ -71,7 +71,7 @@ if (isset($_POST["masukTahunan"])) {
                     <li class="nav-item active">
                         <a class="nav-link ml-1" href="posisi.php"><i class="fas fa-file-invoice-dollar"></i></a>
                     </li>
-                    <?php if (isset($_SESSION["sadmin"])) { ?>
+                    <?php if (isset(filter_input(INPUT_SESSION, 'sadmin'))) { ?>
                         <li class="nav-item">
                             <a class="nav-link ml-1" href="fakultas.php"><i class="fas fa-hotel"></i></a>
                         </li>

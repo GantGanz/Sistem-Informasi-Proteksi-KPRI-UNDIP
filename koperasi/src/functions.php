@@ -1,6 +1,5 @@
 <?php
 $conn = mysqli_connect("localhost", "root", "", "koperasi");
-// $conn = mysqli_connect("localhost", "angger", "12345678", "koperasi");
 
 function query($query)
 {
@@ -30,9 +29,6 @@ function tambah($data)
     $nip = htmlspecialchars($data["nip"]);
     $no_anggota = htmlspecialchars($data["no_anggota"]);
     $no_hp = htmlspecialchars($data["no_hp"]);
-    // $awal = htmlspecialchars($data["awal"]);
-    // $nominal = htmlspecialchars($data["nominal"]);
-    // $akhir = htmlspecialchars($data["akhir"]);
 
     $query = "INSERT INTO anggota VALUES 
             ('', '$nama',  '$fakultas', '$nip', '$tempat_lahir', '$tanggal_lahir', '$rt', '$rw', '$desa', '$kecamatan', '$kabupaten', 
@@ -67,9 +63,6 @@ function update($data)
     $nip = htmlspecialchars($data["nip"]);
     $no_anggota = htmlspecialchars($data["no_anggota"]);
     $no_hp = htmlspecialchars($data["no_hp"]);
-    // $awal = htmlspecialchars($data["awal"]);
-    // $nominal = htmlspecialchars($data["nominal"]);
-    // $akhir = htmlspecialchars($data["akhir"]);
 
     $query = "UPDATE anggota SET 
                 nama = '$nama', tempat_lahir = '$tempat_lahir', tanggal_lahir = '$tanggal_lahir', 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION["login"])) {
+if (!isset(filter_input(INPUT_SESSION, 'login'))) {
     header("Location: login.php");
     exit;
 }
@@ -50,7 +50,7 @@ if (!isset($_SESSION["login"])) {
                     <li class="nav-item">
                         <a class="nav-link ml-1" href="posisi.php"><i class="fas fa-file-invoice-dollar"></i></a>
                     </li>
-                    <?php if (isset($_SESSION["sadmin"])) { ?>
+                    <?php if (isset(filter_input(INPUT_SESSION, 'sadmin'))) { ?>
                         <li class="nav-item">
                             <a class="nav-link ml-1" href="fakultas.php"><i class="fas fa-hotel"></i></a>
                         </li>
@@ -120,7 +120,7 @@ if (!isset($_SESSION["login"])) {
         </div>
     </div>
     <div class="container small">
-        <?php if (isset($_SESSION["sadmin"])) { ?>
+        <?php if (isset(filter_input(INPUT_SESSION, 'sadmin'))) { ?>
             <hr>
             <div class="text-center">
                 <h5>Fitur Tambahan untuk Super Admin</h5>

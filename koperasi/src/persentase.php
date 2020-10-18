@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION["login"])) {
+if (!isset(filter_input(INPUT_SESSION, 'login'))) {
     header("Location: login.php");
     exit;
 }
@@ -9,8 +9,8 @@ require 'functions.php';
 
 $persentase = query("SELECT * FROM persentase ORDER BY tahun ASC, persentase ASC");
 
-if (isset($_POST["cari"])) {
-    $persentase = cariPersentase($_POST["keyword"]);
+if (isset(filter_input(INPUT_POST, 'cari'))) {
+    $persentase = cariPersentase(filter_input(INPUT_POST, 'keyword'));
 }
 ?>
 
@@ -58,7 +58,7 @@ if (isset($_POST["cari"])) {
                     <li class="nav-item">
                         <a class="nav-link ml-1" href="posisi.php"><i class="fas fa-file-invoice-dollar"></i></a>
                     </li>
-                    <?php if (isset($_SESSION["sadmin"])) { ?>
+                    <?php if (isset(filter_input(INPUT_SESSION, 'sadmin'))) { ?>
                         <li class="nav-item">
                             <a class="nav-link ml-1" href="fakultas.php"><i class="fas fa-hotel"></i></a>
                         </li>
@@ -77,8 +77,8 @@ if (isset($_POST["cari"])) {
 
 
     <?php
-    if (isset($_GET["id"])) {
-        $id = $_GET["id"];
+    if (isset(filter_input(INPUT_GET, 'id'))) {
+        $id = filter_input(INPUT_GET, 'id');
         if (hapusPersentase($id) > 0) { ?>
             <div class="alert alert-success" role="alert">
                 Data berhasil dihapus.

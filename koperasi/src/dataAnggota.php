@@ -1,24 +1,21 @@
 <?php
 session_start();
-if (!isset($_SESSION["login"])) {
+if (!isset(filter_input(INPUT_SESSION, 'login'))) {
     header("Location: login.php");
     exit;
 }
 
 require 'functions.php';
 
-// $anggota = query("SELECT * FROM anggota ORDER BY id DESC");
-
 $jumlahDataPerHalaman = 200;
 $jumlahData = count(query("SELECT * FROM anggota"));
 $jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
-// if (isset($_GET["halaman"])), $halamanAktif = (true = $_GET["halaman"]/ else = 1)
-$halamanAktif = (isset($_GET["halaman"])) ? $_GET["halaman"] : 1;
+$halamanAktif = (isset(filter_input(INPUT_GET, 'halaman'))) ? filter_input(INPUT_GET, 'halaman') : 1;
 $awalData = ($jumlahDataPerHalaman * $halamanAktif) - $jumlahDataPerHalaman;
 $anggota = query("SELECT * FROM anggota LIMIT $awalData, $jumlahDataPerHalaman");
 
-if (isset($_POST["cari"])) {
-    $anggota = cari($_POST["keyword"]);
+if (isset(filter_input(INPUT_POST, 'cari'))) {
+    $anggota = cari(filter_input(INPUT_POST, 'keyword'));
 }
 ?>
 
@@ -66,7 +63,7 @@ if (isset($_POST["cari"])) {
                     <li class="nav-item">
                         <a class="nav-link ml-1" href="posisi.php"><i class="fas fa-file-invoice-dollar"></i></a>
                     </li>
-                    <?php if (isset($_SESSION["sadmin"])) { ?>
+                    <?php if (isset(filter_input(INPUT_SESSION, 'sadmin'))) { ?>
                         <li class="nav-item">
                             <a class="nav-link ml-1" href="fakultas.php"><i class="fas fa-hotel"></i></a>
                         </li>
@@ -84,8 +81,8 @@ if (isset($_POST["cari"])) {
     </nav>
 
     <?php
-    if (isset($_GET["id"])) {
-        $id = $_GET["id"];
+    if (isset(filter_input(INPUT_GET, 'id'))) {
+        $id = filter_input(INPUT_GET, 'id');
         if (hapus($id) > 0) { ?>
             <div class="alert alert-success" role="alert">
                 Data berhasil dihapus.

@@ -1,13 +1,12 @@
 <?php
 session_start();
-if (!isset($_SESSION["login"])) {
+if (!isset(filter_input(INPUT_SESSION, 'login'))) {
     header("Location: login.php");
     exit;
 }
 
 require 'functions.php';
 
-// $pemasukan = query("SELECT * FROM pemasukan WHERE akhir < NOW()");
 $pemasukan = query("SELECT * FROM pemasukan");
 header("Content-type: application/vnd-ms-excel");
 header("Content-Disposition: attachment; filename=data_hangus.xls");

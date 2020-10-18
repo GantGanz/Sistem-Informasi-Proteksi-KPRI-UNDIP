@@ -1,6 +1,6 @@
 <?php
 require '../src/functions.php';
-$keyword = $_GET["keyword"];
+$keyword = filter_input(INPUT_GET, 'keyword');
 $query = "SELECT * FROM anggota WHERE
         nama LIKE '%$keyword%' OR tempat_lahir LIKE '%$keyword%' OR tanggal_lahir LIKE '%$keyword%' OR 
         fakultas LIKE '%$keyword%' OR rt LIKE '%$keyword%' OR rw LIKE '%$keyword%' OR desa LIKE '%$keyword%' OR kecamatan LIKE '%$keyword%' OR 
