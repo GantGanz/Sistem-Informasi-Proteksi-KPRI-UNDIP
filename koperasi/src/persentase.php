@@ -152,8 +152,8 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
                         $angka2 = filter_var($row["max"]);
                         $angka_format2 = number_format($angka2, 2, ",", ".");
                         ?>
-                        <td>Rp<?= $angka_format; ?></td>
-                        <td>Rp<?= $angka_format2; ?></td>
+                        <td>Rp<?= filter_var($angka_format); ?></td>
+                        <td>Rp<?= filter_var($angka_format2); ?></td>
                         <td><a href="updatePersentase.php?id=<?= filter_var($row["id"]); ?>"><i class="d-flex justify-content-center fas fa-pencil-alt"></i></a></td>
                         <td><a href="persentase.php?id=<?= filter_var($row["id"]); ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="d-flex justify-content-center fas fa-trash-alt"></i></a></td>
                     </tr>

@@ -128,15 +128,15 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
                 <div class="form-group col-md-3 tombolHalaman">
                     <span class="font-weight-light">Halaman : </span>
                     <?php if ($halamanAktif > 1) : ?>
-                        <a class="back" href="?halaman=<?= $halamanAktif - 1; ?>">&laquo;</a>
+                        <a class="back" href="?halaman=<?= filter_var($halamanAktif) - 1; ?>">&laquo;</a>
                     <?php endif; ?>
                     <?php if ($halamanAktif == 1) {
                         echo '<span class="first invi">First</span>
                         <span class="back invi">&laquo;</span>';
                     } ?>
-                    <a class="halamanSekarang" href="?halaman=<?= $halamanAktif; ?>"><?= $halamanAktif; ?></a>
+                    <a class="halamanSekarang" href="?halaman=<?= filter_var($halamanAktif); ?>"><?= filter_var($halamanAktif); ?></a>
                     <?php if ($halamanAktif < $jumlahHalaman) : ?>
-                        <a class="next" href="?halaman=<?= $halamanAktif + 1; ?>">&raquo;</a>
+                        <a class="next" href="?halaman=<?= filter_var($halamanAktif) + 1; ?>">&raquo;</a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -178,7 +178,7 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
                         $angka = filter_var($row["nominal_cair"]);
                         $angka_format = number_format($angka, 2, ",", ".");
                         ?>
-                        <td>Rp<?= $angka_format; ?></td>
+                        <td>Rp<?= filter_var($angka_format); ?></td>
                         <td><?= filter_var($row["nama_penerima"]); ?></td>
                         <td><?= filter_var($row["status"]); ?></td>
                         <td><a href="updatePengeluaran.php?id=<?= filter_var($row["id"]); ?>"><i class="d-flex justify-content-center fas fa-pencil-alt"></i></a></td>

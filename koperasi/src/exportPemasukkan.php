@@ -54,9 +54,9 @@ header("Expires: 0");
                     $angka2 = filter_var($row["nominal_akhir"]);
                     $angka_format2 = number_format($angka2, 2, ",", ".");
                     ?>
-                    <td>Rp<?= $angka_format; ?></td>
+                    <td>Rp<?= filter_var($angka_format); ?></td>
                     <td><?= filter_var($row["persentase"]); ?></td>
-                    <td>Rp<?= $angka_format2; ?></td>
+                    <td>Rp<?= filter_var($angka_format2); ?></td>
                 </tr>
                 <?php $i++ ?>
             <?php endforeach ?>

@@ -162,10 +162,9 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
         <form action="" method="POST">
             <div class="form-row">
                 <div class="form-group col-md-6 mt-1">
-                    <h5>Dari Tahun : <a href="posisi.php"><?= $awal; ?></a>, sampai dengan : <a href="posisi.php"><?= $akhir; ?></a></h5>
+                    <h5>Dari Tahun : <a href="posisi.php"><?= filter_var($awal); ?></a>, sampai dengan : <a href="posisi.php"><?= filter_var($akhir); ?></a></h5>
                 </div>
                 <div class="form-group col-md-6 printInv">
-                    <!-- <a href="exportPosisi.php" target="_blank" class="printInv btn btn-success mr-3"><i class="fas fa-file-excel"> Export</i></a> -->
                     <button onclick="window.print()" class="printInv btn btn-info"><i class="fas fa-print"> Print</i></button>
                 </div>
             </div>
@@ -204,7 +203,7 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                     <tr>
                         <td></td>
                         <th class="text-center">Saldo Awal : </th>
-                        <th><?php echo $negativS ? '-' : ''; ?>Rp<?= $saldo_awal_format; ?></th>
+                        <th><?php echo $negativS ? '-' : ''; ?>Rp<?= filter_var($saldo_awal_format); ?></th>
                     </tr>
                     <?php foreach ($unionPemasukan as $row) : ?>
                         <?php
@@ -220,15 +219,15 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                         } else { ?>
                             <?php if ($pemasukanTahunan == 0) { ?>
                                 <tr>
-                                    <th class="text-center"><?= $i; ?></th>
-                                    <td class="text-center"><?= $tahunBefore; ?></td>
+                                    <th class="text-center"><?= filter_var($i); ?></th>
+                                    <td class="text-center"><?= filter_var($tahunBefore); ?></td>
                                     <td>Rp<?= number_format($jumlahSementara, 2, ",", "."); ?></td>
                                 </tr>
                             <?php } else {
                                 $satu = 0; ?>
                                 <tr>
-                                    <th class="text-center"><?= $i; ?></th>
-                                    <td class="text-center"><?= $tahunBefore; ?></td>
+                                    <th class="text-center"><?= filter_var($i); ?></th>
+                                    <td class="text-center"><?= filter_var($tahunBefore); ?></td>
                                     <td>Rp<?= number_format($pemasukanTahunan, 2, ",", "."); ?></td>
                                 </tr>
                             <?php }
@@ -243,8 +242,8 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                                 $pemasukanTahunan = filter_var($row["jumlah"]);
                             } ?>
                             <tr>
-                                <th class="text-center"><?= $i; ?></th>
-                                <td class="text-center"><?= $tahunNow; ?></td>
+                                <th class="text-center"><?= filter_var($i); ?></th>
+                                <td class="text-center"><?= filter_var($tahunNow); ?></td>
                                 <td>Rp<?= number_format($pemasukanTahunan, 2, ",", "."); ?></td>
                             </tr>
                             <?php $i++;
@@ -288,15 +287,15 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                         } else { ?>
                             <?php if ($pengeluaranTahunan == 0) { ?>
                                 <tr>
-                                    <th class="text-center"><?= $i; ?></th>
-                                    <td class="text-center"><?= $tahunBefore; ?></td>
+                                    <th class="text-center"><?= filter_var($i); ?></th>
+                                    <td class="text-center"><?= filter_var($tahunBefore); ?></td>
                                     <td>Rp<?= number_format($jumlahSementara, 2, ",", "."); ?></td>
                                 </tr>
                             <?php } else {
                                 $satu = 0; ?>
                                 <tr>
-                                    <th class="text-center"><?= $i; ?></th>
-                                    <td class="text-center"><?= $tahunBefore; ?></td>
+                                    <th class="text-center"><?= filter_var($i); ?></th>
+                                    <td class="text-center"><?= filter_var($tahunBefore); ?></td>
                                     <td>Rp<?= number_format($pengeluaranTahunan, 2, ",", "."); ?></td>
                                 </tr>
                             <?php }
@@ -311,8 +310,8 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                                 $pengeluaranTahunan = filter_var($row["jumlah"]);
                             } ?>
                             <tr>
-                                <th class="text-center"><?= $i; ?></th>
-                                <td class="text-center"><?= $tahunNow; ?></td>
+                                <th class="text-center"><?= filter_var($i); ?></th>
+                                <td class="text-center"><?= filter_var($tahunNow); ?></td>
                                 <td>Rp<?= number_format($pengeluaranTahunan, 2, ",", "."); ?></td>
                             </tr>
                             <?php $i++;
@@ -344,15 +343,15 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                         <td style="width: 155px"></td>
                         <td style="width: 95px"></td>
                         <th style="width: 270px">Saldo : </th>
-                        <th style="width: 155px"><?php echo $negativSA ? '-' : ''; ?>Rp<?= $saldo_akhir_format; ?></th>
+                        <th style="width: 155px"><?php echo $negativSA ? '-' : ''; ?>Rp<?= filter_var($saldo_akhir_format); ?></th>
                     </tr>
                     <tr>
                         <td></td>
                         <th>Total : </th>
-                        <th>Rp<?= $angka_format; ?></th>
+                        <th>Rp<?= filter_var($angka_format); ?></th>
                         <td></td>
                         <th>Total : </th>
-                        <th>Rp<?= $angka_format; ?></th>
+                        <th>Rp<?= filter_var($angka_format); ?></th>
                     </tr>
                 </tbody>
             </table>
@@ -377,15 +376,15 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                         <td style="width: 150px"></td>
                         <td style="width: 90px"></td>
                         <th style="width: 260px">Saldo : </th>
-                        <th style="width: 150px"><?php echo $negativSA ? '-' : ''; ?>Rp<?= $saldo_akhir_format; ?></th>
+                        <th style="width: 150px"><?php echo $negativSA ? '-' : ''; ?>Rp<?= filter_var($saldo_akhir_format); ?></th>
                     </tr>
                     <tr>
                         <td></td>
                         <th>Total : </th>
-                        <th>Rp<?= $angka_format; ?></th>
+                        <th>Rp<?= filter_var($angka_format); ?></th>
                         <td></td>
                         <th>Total : </th>
-                        <th>Rp<?= $angka_format; ?></th>
+                        <th>Rp<?= filter_var($angka_format); ?></th>
                     </tr>
                 </tbody>
             </table>

@@ -165,10 +165,9 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
         <form action="" method="POST">
             <div class="form-row">
                 <div class="form-group col-md-6 mt-1">
-                    <h5>Dari tanggal : <a href="posisi.php"><?= $awal; ?></a>, sampai dengan : <a href="posisi.php"><?= $akhir; ?></a></h5>
+                    <h5>Dari tanggal : <a href="posisi.php"><?= filter_var($awal); ?></a>, sampai dengan : <a href="posisi.php"><?= filter_var($akhir); ?></a></h5>
                 </div>
                 <div class="form-group col-md-6 printInv">
-                    <!-- <a href="exportPosisi.php" target="_blank" class="printInv btn btn-success mr-3"><i class="fas fa-file-excel"> Export</i></a> -->
                     <button onclick="window.print()" class="printInv btn btn-info"><i class="fas fa-print"> Print</i></button>
                 </div>
             </div>
@@ -197,9 +196,9 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                     }
                     $saldo_awal_format = number_format(abs($saldoAwal), 2, ",", "."); ?>
                     <tr>
-                        <th><?= $awal; ?></th>
+                        <th><?= filter_var($awal); ?></th>
                         <th>Saldo Awal : </th>
-                        <th><?php echo $negativS ? '-' : ''; ?>Rp<?= $saldo_awal_format; ?></th>
+                        <th><?php echo $negativS ? '-' : ''; ?>Rp<?= filter_var($saldo_awal_format); ?></th>
                     </tr>
                     <?php foreach ($unionPemasukan as $row) : ?>
                         <tr>
@@ -210,7 +209,7 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                             $totalPemasukan = $totalPemasukan + $angka;
                             $angka_format = number_format($angka, 2, ",", ".");
                             ?>
-                            <td>Rp<?= $angka_format; ?></td>
+                            <td>Rp<?= filter_var($angka_format); ?></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
@@ -236,7 +235,7 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                             $totalPengeluaran = $totalPengeluaran + $angka;
                             $angka_format = number_format($angka, 2, ",", ".");
                             ?>
-                            <td>Rp<?= $angka_format; ?></td>
+                            <td>Rp<?= filter_var($angka_format); ?></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
@@ -260,15 +259,15 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                         <td style="width: 155px"></td>
                         <td style="width: 95px"></td>
                         <th style="width: 270px">Saldo : </th>
-                        <th style="width: 155px"><?php echo $negativSA ? '-' : ''; ?>Rp<?= $saldo_akhir_format; ?></th>
+                        <th style="width: 155px"><?php echo $negativSA ? '-' : ''; ?>Rp<?= filter_var($saldo_akhir_format); ?></th>
                     </tr>
                     <tr>
                         <td></td>
                         <th>Total : </th>
-                        <th>Rp<?= $angka_format; ?></th>
+                        <th>Rp<?= filter_var($angka_format); ?></th>
                         <td></td>
                         <th>Total : </th>
-                        <th>Rp<?= $angka_format; ?></th>
+                        <th>Rp<?= filter_var($angka_format); ?></th>
                     </tr>
                 </tbody>
             </table>
@@ -292,15 +291,15 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                         <td style="width: 150px"></td>
                         <td style="width: 90px"></td>
                         <th style="width: 260px">Saldo : </th>
-                        <th style="width: 150px"><?php echo $negativSA ? '-' : ''; ?>Rp<?= $saldo_akhir_format; ?></th>
+                        <th style="width: 150px"><?php echo $negativSA ? '-' : ''; ?>Rp<?= filter_var($saldo_akhir_format); ?></th>
                     </tr>
                     <tr>
                         <td></td>
                         <th>Total : </th>
-                        <th>Rp<?= $angka_format; ?></th>
+                        <th>Rp<?= filter_var($angka_format); ?></th>
                         <td></td>
                         <th>Total : </th>
-                        <th>Rp<?= $angka_format; ?></th>
+                        <th>Rp<?= filter_var($angka_format); ?></th>
                     </tr>
                 </tbody>
             </table>

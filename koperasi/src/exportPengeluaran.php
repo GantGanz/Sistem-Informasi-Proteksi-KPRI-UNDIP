@@ -53,7 +53,7 @@ header("Expires: 0");
                     $angka = filter_var($row["nominal_cair"]);
                     $angka_format = number_format($angka, 2, ",", ".");
                     ?>
-                    <td>Rp<?= $angka_format; ?></td>
+                    <td>Rp<?= filter_var($angka_format); ?></td>
                     <td><?= filter_var($row["nama_penerima"]); ?></td>
                     <td><?= filter_var($row["status"]); ?></td>
                 </tr>

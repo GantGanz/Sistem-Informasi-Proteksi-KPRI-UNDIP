@@ -98,16 +98,16 @@ $mutasi = query("SELECT * FROM mutasi WHERE id = $id")[0];
     <h2 class="alert alert-primary text-center mt-3 font-weight-bold">Form Perubahan</h2>
     <a href="mutasi.php" class="kembali btn btn-secondary ml-2 printInv"><i class="fas fa-arrow-circle-left"> Kembali</i></a>
     <form action="" method="POST" class="font-weight-bold">
-      <input type="hidden" name="id" value="<?= $mutasi["id"]; ?>">
+      <input type="hidden" name="id" value="<?= filter_var($mutasi["id"]); ?>">
       <div class="form-group">
         <label for="Keterangan">Keterangan : </label>
-        <input id="Keterangan" type="text" name="keterangan" class="form-control" placeholder="Masukkan Keterangan Mutasi" required autocomplete="off" value="<?= $mutasi["keterangan"]; ?>">
+        <input id="Keterangan" type="text" name="keterangan" class="form-control" placeholder="Masukkan Keterangan Mutasi" required autocomplete="off" value="<?= filter_var($mutasi["keterangan"]); ?>">
       </div>
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
             <label for="Tanggal">Tanggal : </label>
-            <input id="Tanggal" type="date" name="tanggal" class="form-control" placeholder="Masukkan Tanggal Mutasi" required autocomplete="off" value="<?= $mutasi["tanggal"]; ?>">
+            <input id="Tanggal" type="date" name="tanggal" class="form-control" placeholder="Masukkan Tanggal Mutasi" required autocomplete="off" value="<?= filter_var($mutasi["tanggal"]); ?>">
           </div>
         </div>
         <div class="col-md-6">
@@ -122,7 +122,7 @@ $mutasi = query("SELECT * FROM mutasi WHERE id = $id")[0];
       </div>
       <div class="form-group">
         <label for="Jumlah">Jumlah : </label>
-        <input id="Jumlah" type="number" name="jumlah" class="form-control" placeholder="Dalam Satuan Rupiah dan Tanpa Titik" required autocomplete="off" value="<?= $mutasi["jumlah"]; ?>">
+        <input id="Jumlah" type="number" name="jumlah" class="form-control" placeholder="Dalam Satuan Rupiah dan Tanpa Titik" required autocomplete="off" value="<?= filter_var($mutasi["jumlah"]); ?>">
       </div>
 
       <button type="reset" class="btn btn-danger mt-2"><i class="fas fa-trash"> RESET</i></button>

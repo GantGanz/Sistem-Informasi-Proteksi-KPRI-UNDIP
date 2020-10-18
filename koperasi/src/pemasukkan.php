@@ -147,16 +147,16 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
                     <span class="font-weight-light">Halaman : </span>
                     <?php if ($halamanAktif > 1) : ?>
                         <a class="first" href="?halaman=<?= 1; ?>">First</a>
-                        <a class="back" href="?halaman=<?= $halamanAktif - 1; ?>">&laquo;</a>
+                        <a class="back" href="?halaman=<?= filter_var($halamanAktif) - 1; ?>">&laquo;</a>
                     <?php endif; ?>
                     <?php if ($halamanAktif == 1) {
                         echo '<span class="first invi">First</span>
                         <span class="back invi">&laquo;</span>';
                     } ?>
-                    <a class="halamanSekarang" href="?halaman=<?= $halamanAktif; ?>"><?= $halamanAktif; ?></a>
+                    <a class="halamanSekarang" href="?halaman=<?= filter_var($halamanAktif); ?>"><?= filter_var($halamanAktif); ?></a>
                     <?php if ($halamanAktif < $jumlahHalaman) : ?>
-                        <a class="next" href="?halaman=<?= $halamanAktif + 1; ?>">&raquo;</a>
-                        <a class="last" href="?halaman=<?= $jumlahHalaman; ?>">Last</a>
+                        <a class="next" href="?halaman=<?= filter_var($halamanAktif) + 1; ?>">&raquo;</a>
+                        <a class="last" href="?halaman=<?= filter_var($jumlahHalaman); ?>">Last</a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -206,10 +206,10 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
                             $berlaku = 'Ya';
                         }
                         ?>
-                        <td>Rp<?= $angka_format; ?></td>
+                        <td>Rp<?= filter_var($angka_format); ?></td>
                         <td><?= filter_var($row["persentase"]); ?></td>
-                        <td>Rp<?= $angka_format2; ?></td>
-                        <td><?= $berlaku; ?></td>
+                        <td>Rp<?= filter_var($angka_format2); ?></td>
+                        <td><?= filter_var($berlaku); ?></td>
                         <td class="printInv"><a href="updatePemasukan.php?id=<?= filter_var($row["id"]); ?>"><i class=" fas fa-pencil-alt"></i></a></td>
                         <td class="printInv"><a href="pemasukkan.php?id=<?= filter_var($row["id"]); ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="fas fa-trash-alt d-flex justify-content-center"></i></a></td>
                     </tr>

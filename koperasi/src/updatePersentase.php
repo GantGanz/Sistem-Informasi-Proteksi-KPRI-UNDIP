@@ -100,18 +100,18 @@ $persentase = query("SELECT * FROM persentase WHERE id = $id")[0];
         <h2 class="alert alert-primary text-center mt-3 font-weight-bold">Form Persentase Proteksi</h2>
         <a href="persentase.php" class="kembali btn btn-secondary ml-2 printInv"><i class="fas fa-arrow-circle-left"> Kembali</i></a>
         <form action="" method="POST" class="font-weight-bold">
-            <input type="hidden" name="id" value="<?= $persentase["id"]; ?>">
+            <input type="hidden" name="id" value="<?= filter_var($persentase["id"]); ?>">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="tahun">Tahun : </label>
-                        <input id="tahun" type="number" name="tahun" class="form-control" placeholder="Masukkan tahun disini.." required autocomplete="off" value="<?= $persentase["tahun"]; ?>">
+                        <input id="tahun" type="number" name="tahun" class="form-control" placeholder="Masukkan tahun disini.." required autocomplete="off" value="<?= filter_var($persentase["tahun"]); ?>">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="persentase">Persentase : </label>
-                        <input id="persentase" type="number" step="0.01" min="0" name="persentase" class="form-control" placeholder="Masukkan presentase disini.." required autocomplete="off" value="<?= $persentase["persentase"]; ?>">
+                        <input id="persentase" type="number" step="0.01" min="0" name="persentase" class="form-control" placeholder="Masukkan presentase disini.." required autocomplete="off" value="<?= filter_var($persentase["persentase"]); ?>">
                     </div>
                 </div>
             </div>
@@ -119,13 +119,13 @@ $persentase = query("SELECT * FROM persentase WHERE id = $id")[0];
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="min">Minimal : </label>
-                        <input id="min" type="number" name="min" class="form-control" placeholder="Masukkan nominal minimal disini.." required autocomplete="off" value="<?= $persentase["min"]; ?>">
+                        <input id="min" type="number" name="min" class="form-control" placeholder="Masukkan nominal minimal disini.." required autocomplete="off" value="<?= filter_var($persentase["min"]); ?>">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="max">Maksimal : </label>
-                        <input id="max" type="number" name="max" class="form-control" placeholder="Masukkan nominal maksimal disini.." required autocomplete="off" value="<?= $persentase["max"]; ?>">
+                        <input id="max" type="number" name="max" class="form-control" placeholder="Masukkan nominal maksimal disini.." required autocomplete="off" value="<?= filter_var($persentase["max"]); ?>">
                     </div>
                 </div>
             </div>

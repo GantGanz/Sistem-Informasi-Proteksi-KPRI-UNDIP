@@ -51,7 +51,7 @@ header("Expires: 0");
                         $angka_format2 = number_format($angka2, 2, ",", ".");
                         $angka_format = number_format($total, 2, ",", ".");
                         ?>
-                        <td>Rp<?= $angka_format2; ?></td>
+                        <td>Rp<?= filter_var($angka_format2); ?></td>
                     </tr>
                     <?php $i++ ?>
                 <?php } ?>
@@ -61,7 +61,7 @@ header("Expires: 0");
                 <td></td>
                 <td></td>
                 <th>Total : </th>
-                <th>Rp<?= $angka_format; ?></th>
+                <th>Rp<?= filter_var($angka_format); ?></th>
             </tr>
         </tbody>
     </table>

@@ -172,8 +172,8 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
                     $ufakultas = query("SELECT * FROM fakultas WHERE id = $uid")[0];
                 ?>
                     <div class="input-group bm-3">
-                        <input type="hidden" name="id" value="<?= $ufakultas["id"]; ?>">
-                        <input class="form-control" type="text" name="updateFakultas" placeholder="Update nama fakultas disini.." autocomplete="off" required value="<?= $ufakultas["nama"]; ?>" autofocus>
+                        <input type="hidden" name="id" value="<?= filter_var($ufakultas["id"]); ?>">
+                        <input class="form-control" type="text" name="updateFakultas" placeholder="Update nama fakultas disini.." autocomplete="off" required value="<?= filter_var($ufakultas["nama"]); ?>" autofocus>
                         <div class="input-group-append">
                             <button type="submit" class="input-group-text btn btn-primary" name="update"><i class=" fas fa-pencil-alt"> Update</i></button>
                         </div>
