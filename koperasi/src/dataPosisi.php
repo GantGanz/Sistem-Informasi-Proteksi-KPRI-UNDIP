@@ -198,7 +198,7 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                     <tr>
                         <th><?= filter_var($awal); ?></th>
                         <th>Saldo Awal : </th>
-                        <th><?php echo $negativS ? '-' : ''; ?>Rp<?= filter_var($saldo_awal_format); ?></th>
+                        <th><?php print_r($negativS ? '-' : ''); ?>Rp<?= filter_var($saldo_awal_format); ?></th>
                     </tr>
                     <?php foreach ($unionPemasukan as $row) : ?>
                         <tr>
@@ -259,7 +259,7 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                         <td style="width: 155px"></td>
                         <td style="width: 95px"></td>
                         <th style="width: 270px">Saldo : </th>
-                        <th style="width: 155px"><?php echo $negativSA ? '-' : ''; ?>Rp<?= filter_var($saldo_akhir_format); ?></th>
+                        <th style="width: 155px"><?php print_r($negativSA ? '-' : ''); ?>Rp<?= filter_var($saldo_akhir_format); ?></th>
                     </tr>
                     <tr>
                         <td></td>
@@ -291,7 +291,7 @@ $saldoAwal = $saldo + $pemasukkanSaldoSum - $pengeluaranSaldoSum - $mutasiKredit
                         <td style="width: 150px"></td>
                         <td style="width: 90px"></td>
                         <th style="width: 260px">Saldo : </th>
-                        <th style="width: 150px"><?php echo $negativSA ? '-' : ''; ?>Rp<?= filter_var($saldo_akhir_format); ?></th>
+                        <th style="width: 150px"><?php print_r($negativSA ? '-' : ''); ?>Rp<?= filter_var($saldo_akhir_format); ?></th>
                     </tr>
                     <tr>
                         <td></td>
