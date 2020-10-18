@@ -133,8 +133,8 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
                         <a class="back" href="?halaman=<?= filter_var($halamanAktif) - 1; ?>">&laquo;</a>
                     <?php endif; ?>
                     <?php if ($halamanAktif == 1) {
-                        echo '<span class="first invi">First</span>
-                        <span class="back invi">&laquo;</span>';
+                        $this->getResponse()->setBody('<span class="first invi">First</span>
+                        <span class="back invi">&laquo;</span>');
                     } ?>
                     <a class="halamanSekarang" href="?halaman=<?= filter_var($halamanAktif); ?>"><?= filter_var($halamanAktif); ?></a>
                     <?php if ($halamanAktif < $jumlahHalaman) : ?>
