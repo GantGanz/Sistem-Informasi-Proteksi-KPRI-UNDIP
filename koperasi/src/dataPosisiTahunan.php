@@ -13,8 +13,8 @@ if (!isset(filter_input(INPUT_SESSION, 'awalTahun'))) {
 
 require 'functions.php';
 
-$awal = $_SESSION["awalTahun"];
-$akhir = $_SESSION["akhirTahun"];
+$awal = filter_input(INPUT_SESSION, 'awalTahun');
+$akhir = filter_input(INPUT_SESSION, 'akhirTahun');
 
 $unionPemasukan = query("(SELECT awal AS tanggal, nama AS nama, nominal_akhir AS jumlah FROM pemasukan WHERE YEAR(awal) >= '$awal' AND YEAR(awal) <= '$akhir')
                         UNION

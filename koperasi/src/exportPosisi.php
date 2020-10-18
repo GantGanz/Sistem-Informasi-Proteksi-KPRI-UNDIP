@@ -9,8 +9,8 @@ session_start();
 
 require 'functions.php';
 
-$awal = $_SESSION["awal"];
-$akhir = $_SESSION["akhir"];
+$awal = filter_input(INPUT_SESSION, 'awal');
+$akhir = filter_input(INPUT_SESSION, 'akhir');
 $pemasukkan = query("SELECT * FROM pemasukan WHERE awal >= '$awal' AND awal <= '$akhir'");
 $pengeluaran = query("SELECT * FROM pengeluaran WHERE tgl_cair >= '$awal' AND tgl_cair <= '$akhir'");
 $saldo = query("SELECT * FROM saldo")[0];

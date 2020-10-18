@@ -15,8 +15,8 @@ require 'functions.php';
 
 $namaBulan = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
 
-$awal = $_SESSION["awal"];
-$akhir = $_SESSION["akhir"];
+$awal = filter_input(INPUT_SESSION, 'awal');
+$akhir = filter_input(INPUT_SESSION, 'akhir');
 
 $unionPemasukan = query("(SELECT awal AS tanggal, nama AS nama, nominal_akhir AS jumlah FROM pemasukan WHERE awal >= '$awal' AND awal <= '$akhir')
                         UNION
