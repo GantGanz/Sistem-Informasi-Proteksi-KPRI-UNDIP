@@ -60,7 +60,6 @@ if (isset($_POST["login"])) {
     <?php
     } ?>
     <div class="container mt-5 text-center">
-        <!-- <h1>SIPROTOL</h1> -->
         <h1>Sistem Informasi Proteksi Online</h1>
         <h2>KPRI Universitas Diponegoro</h2>
     </div>

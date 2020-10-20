@@ -36,7 +36,7 @@ $daftar_anggota = query("SELECT * FROM anggota ORDER BY nama");
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Selamat Datang, <?= $_SESSION["username"]; ?><span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">Selamat Datang, <?= filter_var($_SESSION["username"]); ?><span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link ml-3" href="dataAnggota.php"><i class="fas fa-users"></i></a>
