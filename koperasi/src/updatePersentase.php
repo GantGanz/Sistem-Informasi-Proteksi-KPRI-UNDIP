@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset(filter_input(INPUT_SESSION, 'login'))) {
+if (!isset($_SESSION["login"])) {
     header("Location: login.php");
     exit;
 }
@@ -38,7 +38,7 @@ $persentase = query("SELECT * FROM persentase WHERE id = $id")[0];
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Selamat Datang, <?= filter_input(INPUT_SESSION, 'username'); ?><span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#">Selamat Datang, <?= $_SESSION["username"]; ?><span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link ml-3" href="dataAnggota.php"><i class="fas fa-users"></i></a>
@@ -55,7 +55,7 @@ $persentase = query("SELECT * FROM persentase WHERE id = $id")[0];
                     <li class="nav-item">
                         <a class="nav-link ml-1" href="posisi.php"><i class="fas fa-file-invoice-dollar"></i></a>
                     </li>
-                    <?php if (isset(filter_input(INPUT_SESSION, 'sadmin'))) { ?>
+                    <?php if (isset($_SESSION["sadmin"])) { ?>
                         <li class="nav-item">
                             <a class="nav-link ml-1" href="fakultas.php"><i class="fas fa-hotel"></i></a>
                         </li>
@@ -73,7 +73,7 @@ $persentase = query("SELECT * FROM persentase WHERE id = $id")[0];
     </nav>
 
     <?php
-    if (isset(filter_input(INPUT_POST, 'submit'))) {
+    if (isset($_POST["submit"])) {
         if (updatePersentase(filter_input_array(INPUT_POST)) > 0) { ?>
             <div class="alert alert-success" role="alert">
                 Data berhasil ditambahkan, <a href="persentase.php" class="alert-link">Klik disini untuk melihat tabel</a>.
@@ -100,18 +100,18 @@ $persentase = query("SELECT * FROM persentase WHERE id = $id")[0];
         <h2 class="alert alert-primary text-center mt-3 font-weight-bold">Form Persentase Proteksi</h2>
         <a href="persentase.php" class="kembali btn btn-secondary ml-2 printInv"><i class="fas fa-arrow-circle-left"> Kembali</i></a>
         <form action="" method="POST" class="font-weight-bold">
-            <input type="hidden" name="id" value="<?= filter_var($persentase["id"]); ?>">
+            <input type="hidden" name="id" value="<?= $persentase["id"]; ?>">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="tahun">Tahun : </label>
-                        <input id="tahun" type="number" name="tahun" class="form-control" placeholder="Masukkan tahun disini.." required autocomplete="off" value="<?= filter_var($persentase["tahun"]); ?>">
+                        <input id="tahun" type="number" name="tahun" class="form-control" placeholder="Masukkan tahun disini.." required autocomplete="off" value="<?= $persentase["tahun"]; ?>">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="persentase">Persentase : </label>
-                        <input id="persentase" type="number" step="0.01" min="0" name="persentase" class="form-control" placeholder="Masukkan presentase disini.." required autocomplete="off" value="<?= filter_var($persentase["persentase"]); ?>">
+                        <input id="persentase" type="number" step="0.01" min="0" name="persentase" class="form-control" placeholder="Masukkan presentase disini.." required autocomplete="off" value="<?= $persentase["persentase"]; ?>">
                     </div>
                 </div>
             </div>
@@ -119,13 +119,13 @@ $persentase = query("SELECT * FROM persentase WHERE id = $id")[0];
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="min">Minimal : </label>
-                        <input id="min" type="number" name="min" class="form-control" placeholder="Masukkan nominal minimal disini.." required autocomplete="off" value="<?= filter_var($persentase["min"]); ?>">
+                        <input id="min" type="number" name="min" class="form-control" placeholder="Masukkan nominal minimal disini.." required autocomplete="off" value="<?= $persentase["min"]; ?>">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="max">Maksimal : </label>
-                        <input id="max" type="number" name="max" class="form-control" placeholder="Masukkan nominal maksimal disini.." required autocomplete="off" value="<?= filter_var($persentase["max"]); ?>">
+                        <input id="max" type="number" name="max" class="form-control" placeholder="Masukkan nominal maksimal disini.." required autocomplete="off" value="<?= $persentase["max"]; ?>">
                     </div>
                 </div>
             </div>

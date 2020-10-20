@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset(filter_input(INPUT_SESSION, 'login'))) {
+if (!isset($_SESSION["login"])) {
     header("Location: login.php");
     exit;
 }
@@ -42,21 +42,21 @@ header("Expires: 0");
             <?php $i = 1; ?>
             <?php foreach ($pemasukan as $row) : ?>
                 <tr>
-                    <th><?= filter_var($i); ?></th>
-                    <td><?= filter_var($row["nama"]); ?></td>
-                    <td><?= filter_var($row["fakultas"]); ?></td>
-                    <td><?= filter_var($row["no_anggota"]); ?></td>
-                    <td><?= filter_var($row["awal"]); ?></td>
-                    <td><?= filter_var($row["akhir"]); ?></td>
+                    <th><?= $i; ?></th>
+                    <td><?= $row["nama"]; ?></td>
+                    <td><?= $row["fakultas"]; ?></td>
+                    <td><?= $row["no_anggota"]; ?></td>
+                    <td><?= $row["awal"]; ?></td>
+                    <td><?= $row["akhir"]; ?></td>
                     <?php
-                    $angka = filter_var($row["nominal"]);
+                    $angka = $row["nominal"];
                     $angka_format = number_format($angka, 2, ",", ".");
-                    $angka2 = filter_var($row["nominal_akhir"]);
+                    $angka2 = $row["nominal_akhir"];
                     $angka_format2 = number_format($angka2, 2, ",", ".");
                     ?>
-                    <td>Rp<?= filter_var($angka_format); ?></td>
-                    <td><?= filter_var($row["persentase"]); ?></td>
-                    <td>Rp<?= filter_var($angka_format2); ?></td>
+                    <td>Rp<?= $angka_format; ?></td>
+                    <td><?= $row["persentase"]; ?></td>
+                    <td>Rp<?= $angka_format2; ?></td>
                 </tr>
                 <?php $i++ ?>
             <?php endforeach ?>

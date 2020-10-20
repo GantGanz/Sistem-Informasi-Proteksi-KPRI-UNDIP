@@ -1,13 +1,13 @@
 <?php
 session_start();
-if (isset(filter_input(INPUT_SESSION, 'login'))) {
+if (isset($_SESSION["login"])) {
     header("Location: index.php");
     exit;
 }
 
 require 'functions.php';
 
-if (isset(filter_input(INPUT_POST, 'login'))) {
+if (isset($_POST["login"])) {
     $username = filter_input(INPUT_POST, 'username');
     $password = filter_input(INPUT_POST, 'password');
 

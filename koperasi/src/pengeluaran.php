@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset(filter_input(INPUT_SESSION, 'login'))) {
+if (!isset($_SESSION["login"])) {
     header("Location: login.php");
     exit;
 }
@@ -10,11 +10,11 @@ require 'functions.php';
 $jumlahDataPerHalaman = 200;
 $jumlahData = count(query("SELECT * FROM anggota"));
 $jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
-$halamanAktif = (isset(filter_input(INPUT_GET, 'halaman'))) ? filter_input(INPUT_GET, 'halaman') : 1;
+$halamanAktif = (isset($_GET["halaman"])) ? filter_input(INPUT_GET, 'halaman') : 1;
 $awalData = ($jumlahDataPerHalaman * $halamanAktif) - $jumlahDataPerHalaman;
 $pengeluaran = query("SELECT * FROM pengeluaran LIMIT $awalData, $jumlahDataPerHalaman");
 
-if (isset(filter_input(INPUT_POST, 'cari'))) {
+if (isset($_POST["cari"])) {
     $pengeluaran = cariPengeluaran(filter_input(INPUT_POST, 'keyword'));
 }
 ?>
@@ -46,7 +46,7 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Selamat Datang, <?= filter_input(INPUT_SESSION, 'username'); ?><span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#">Selamat Datang, <?= $_SESSION["username"]; ?><span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link ml-3" href="dataAnggota.php"><i class="fas fa-users"></i></a>
@@ -63,7 +63,7 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
                     <li class="nav-item">
                         <a class="nav-link ml-1" href="posisi.php"><i class="fas fa-file-invoice-dollar"></i></a>
                     </li>
-                    <?php if (isset(filter_input(INPUT_SESSION, 'sadmin'))) { ?>
+                    <?php if (isset($_SESSION["sadmin"])) { ?>
                         <li class="nav-item">
                             <a class="nav-link ml-1" href="fakultas.php"><i class="fas fa-hotel"></i></a>
                         </li>
@@ -81,7 +81,7 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
     </nav>
 
     <?php
-    if (isset(filter_input(INPUT_GET, 'id'))) {
+    if (isset($_GET["id"])) {
         $id = filter_input(INPUT_GET, 'id');
         if (hapusPengeluaran($id) > 0) { ?>
             <div class="alert alert-success" role="alert">
@@ -128,15 +128,15 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
                 <div class="form-group col-md-3 tombolHalaman">
                     <span class="font-weight-light">Halaman : </span>
                     <?php if ($halamanAktif > 1) : ?>
-                        <a class="back" href="?halaman=<?= filter_var($halamanAktif) - 1; ?>">&laquo;</a>
+                        <a class="back" href="?halaman=<?= $halamanAktif - 1; ?>">&laquo;</a>
                     <?php endif; ?>
                     <?php if ($halamanAktif == 1) {
                         echo '<span class="first invi">First</span>
                         <span class="back invi">&laquo;</span>';
                     } ?>
-                    <a class="halamanSekarang" href="?halaman=<?= filter_var($halamanAktif); ?>"><?= filter_var($halamanAktif); ?></a>
+                    <a class="halamanSekarang" href="?halaman=<?= $halamanAktif; ?>"><?= $halamanAktif; ?></a>
                     <?php if ($halamanAktif < $jumlahHalaman) : ?>
-                        <a class="next" href="?halaman=<?= filter_var($halamanAktif) + 1; ?>">&raquo;</a>
+                        <a class="next" href="?halaman=<?= $halamanAktif + 1; ?>">&raquo;</a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -169,20 +169,20 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
                 ?>
                 <?php foreach ($pengeluaran as $row) : ?>
                     <tr>
-                        <th><?= filter_var($i); ?></th>
-                        <td><?= filter_var($row["nama"]); ?></td>
-                        <td><?= filter_var($row["fakultas"]); ?></td>
-                        <td><?= filter_var($row["no_anggota"]); ?></td>
-                        <td><?= filter_var($row["tgl_cair"]); ?></td>
+                        <th><?= $i; ?></th>
+                        <td><?= $row["nama"]; ?></td>
+                        <td><?= $row["fakultas"]; ?></td>
+                        <td><?= $row["no_anggota"]; ?></td>
+                        <td><?= $row["tgl_cair"]; ?></td>
                         <?php
-                        $angka = filter_var($row["nominal_cair"]);
+                        $angka = $row["nominal_cair"];
                         $angka_format = number_format($angka, 2, ",", ".");
                         ?>
-                        <td>Rp<?= filter_var($angka_format); ?></td>
-                        <td><?= filter_var($row["nama_penerima"]); ?></td>
-                        <td><?= filter_var($row["status"]); ?></td>
-                        <td><a href="updatePengeluaran.php?id=<?= filter_var($row["id"]); ?>"><i class="d-flex justify-content-center fas fa-pencil-alt"></i></a></td>
-                        <td><a href="pengeluaran.php?id=<?= filter_var($row["id"]); ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="fas fa-trash-alt d-flex justify-content-center"></i></a></td>
+                        <td>Rp<?= $angka_format; ?></td>
+                        <td><?= $row["nama_penerima"]; ?></td>
+                        <td><?= $row["status"]; ?></td>
+                        <td><a href="updatePengeluaran.php?id=<?= $row["id"]; ?>"><i class="d-flex justify-content-center fas fa-pencil-alt"></i></a></td>
+                        <td><a href="pengeluaran.php?id=<?= $row["id"]; ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="fas fa-trash-alt d-flex justify-content-center"></i></a></td>
                     </tr>
                     <?php $i++ ?>
                 <?php endforeach ?>

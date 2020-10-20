@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset(filter_input(INPUT_SESSION, 'login'))) {
+if (!isset($_SESSION["login"])) {
     header("Location: login.php");
     exit;
 }
@@ -9,7 +9,7 @@ require 'functions.php';
 
 $persentase = query("SELECT * FROM persentase ORDER BY tahun ASC, persentase ASC");
 
-if (isset(filter_input(INPUT_POST, 'cari'))) {
+if (isset($_POST["cari"])) {
     $persentase = cariPersentase(filter_input(INPUT_POST, 'keyword'));
 }
 ?>
@@ -41,7 +41,7 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Selamat Datang, <?= filter_input(INPUT_SESSION, 'username'); ?><span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#">Selamat Datang, <?= $_SESSION["username"]; ?><span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link ml-3" href="dataAnggota.php"><i class="fas fa-users"></i></a>
@@ -58,7 +58,7 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
                     <li class="nav-item">
                         <a class="nav-link ml-1" href="posisi.php"><i class="fas fa-file-invoice-dollar"></i></a>
                     </li>
-                    <?php if (isset(filter_input(INPUT_SESSION, 'sadmin'))) { ?>
+                    <?php if (isset($_SESSION["sadmin"])) { ?>
                         <li class="nav-item">
                             <a class="nav-link ml-1" href="fakultas.php"><i class="fas fa-hotel"></i></a>
                         </li>
@@ -77,7 +77,7 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
 
 
     <?php
-    if (isset(filter_input(INPUT_GET, 'id'))) {
+    if (isset($_GET["id"])) {
         $id = filter_input(INPUT_GET, 'id');
         if (hapusPersentase($id) > 0) { ?>
             <div class="alert alert-success" role="alert">
@@ -143,19 +143,19 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
                 <?php $i = 1; ?>
                 <?php foreach ($persentase as $row) : ?>
                     <tr>
-                        <th class="d-flex justify-content-center"><?= filter_var($i); ?></th>
-                        <td><?= filter_var($row["tahun"]); ?></td>
-                        <td><?= filter_var($row["persentase"]); ?></td>
+                        <th class="d-flex justify-content-center"><?= $i; ?></th>
+                        <td><?= $row["tahun"]; ?></td>
+                        <td><?= $row["persentase"]; ?></td>
                         <?php
-                        $angka = filter_var($row["min"]);
+                        $angka = $row["min"];
                         $angka_format = number_format($angka, 2, ",", ".");
-                        $angka2 = filter_var($row["max"]);
+                        $angka2 = $row["max"];
                         $angka_format2 = number_format($angka2, 2, ",", ".");
                         ?>
-                        <td>Rp<?= filter_var($angka_format); ?></td>
-                        <td>Rp<?= filter_var($angka_format2); ?></td>
-                        <td><a href="updatePersentase.php?id=<?= filter_var($row["id"]); ?>"><i class="d-flex justify-content-center fas fa-pencil-alt"></i></a></td>
-                        <td><a href="persentase.php?id=<?= filter_var($row["id"]); ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="d-flex justify-content-center fas fa-trash-alt"></i></a></td>
+                        <td>Rp<?= $angka_format; ?></td>
+                        <td>Rp<?= $angka_format2; ?></td>
+                        <td><a href="updatePersentase.php?id=<?= $row["id"]; ?>"><i class="d-flex justify-content-center fas fa-pencil-alt"></i></a></td>
+                        <td><a href="persentase.php?id=<?= $row["id"]; ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="d-flex justify-content-center fas fa-trash-alt"></i></a></td>
                     </tr>
                     <?php $i++ ?>
                 <?php endforeach ?>

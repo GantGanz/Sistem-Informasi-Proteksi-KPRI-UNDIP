@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset(filter_input(INPUT_SESSION, 'login'))) {
+if (!isset($_SESSION["login"])) {
   header("Location: login.php");
   exit;
 }
@@ -39,7 +39,7 @@ $daftar_anggota = query("SELECT * FROM anggota ORDER BY nama");
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Selamat Datang, <?= filter_input(INPUT_SESSION, 'username'); ?><span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">Selamat Datang, <?= $_SESSION["username"]; ?><span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link ml-3" href="dataAnggota.php"><i class="fas fa-users"></i></a>
@@ -56,7 +56,7 @@ $daftar_anggota = query("SELECT * FROM anggota ORDER BY nama");
           <li class="nav-item">
             <a class="nav-link ml-1" href="posisi.php"><i class="fas fa-file-invoice-dollar"></i></a>
           </li>
-          <?php if (isset(filter_input(INPUT_SESSION, 'sadmin'))) { ?>
+          <?php if (isset($_SESSION["sadmin"])) { ?>
             <li class="nav-item">
               <a class="nav-link ml-1" href="fakultas.php"><i class="fas fa-hotel"></i></a>
             </li>
@@ -74,7 +74,7 @@ $daftar_anggota = query("SELECT * FROM anggota ORDER BY nama");
   </nav>
 
   <?php
-  if (isset(filter_input(INPUT_POST, 'submit'))) {
+  if (isset($_POST["submit"])) {
     if (updatePengeluaran(filter_input_array(INPUT_POST)) > 0) { ?>
       <div class="alert alert-success" role="alert">
         Data berhasil diupdate. <a href="pengeluaran.php" class="alert-link">Klik disini untuk melihat tabel</a>.
@@ -102,15 +102,15 @@ $daftar_anggota = query("SELECT * FROM anggota ORDER BY nama");
     <a href="pengeluaran.php" class="kembali btn btn-secondary ml-2 printInv"><i class="fas fa-arrow-circle-left"> Kembali</i></a>
     <form action="" method="POST" class="font-weight-bold">
       <div class="form-group">
-        <input type="hidden" name="id" value="<?= filter_var($pengeluaran["id"]); ?>">
+        <input type="hidden" name="id" value="<?= $pengeluaran["id"]; ?>">
         <label for="id">Identitas (Nama, Fakultas; No. Anggota) : </label>
-        <select id="id" class="form-control" name="ida" value="<?= filter_var($pengeluaran["id"]); ?>">
+        <select id="id" class="form-control" name="ida" value="<?= $pengeluaran["id"]; ?>">
           <?php foreach ($daftar_anggota as $row) : ?>
             <?php
-            $angka = filter_var($row["nominal"]);
+            $angka = $row["nominal"];
             $angka_format = number_format($angka, 2, ",", ".");
             ?>
-            <option value="<?= filter_var($row["id"]); ?>"><?= filter_var($row["nama"]); ?> ; <?= filter_var($row["fakultas"]); ?> ; <?= filter_var($row["no_anggota"]); ?></option>
+            <option value="<?= $row["id"]; ?>"><?= $row["nama"]; ?> ; <?= $row["fakultas"]; ?> ; <?= $row["no_anggota"]; ?></option>
           <?php endforeach ?>
         </select>
       </div>
@@ -118,13 +118,13 @@ $daftar_anggota = query("SELECT * FROM anggota ORDER BY nama");
         <div class="col-md-6">
           <div class="form-group">
             <label for="tgl_cair">Tanggal Cair : </label>
-            <input id="tgl_cair" type="date" name="tgl_cair" class="form-control" required autocomplete="off" value="<?= filter_var($pengeluaran["tgl_cair"]); ?>">
+            <input id="tgl_cair" type="date" name="tgl_cair" class="form-control" required autocomplete="off" value="<?= $pengeluaran["tgl_cair"]; ?>">
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
             <label for="nominal_cair">Nominal Cair : </label>
-            <input id="nominal_cair" type="number" name="nominal_cair" class="form-control" required autocomplete="off" placeholder="Masukkan nominal disini, (tanpa titik)" value="<?= filter_var($pengeluaran["nominal_cair"]); ?>">
+            <input id="nominal_cair" type="number" name="nominal_cair" class="form-control" required autocomplete="off" placeholder="Masukkan nominal disini, (tanpa titik)" value="<?= $pengeluaran["nominal_cair"]; ?>">
           </div>
         </div>
       </div>
@@ -132,7 +132,7 @@ $daftar_anggota = query("SELECT * FROM anggota ORDER BY nama");
         <div class="col-md-6">
           <div class="form-group">
             <label for="nama_penerima">Nama Penerima : </label>
-            <input id="nama_penerima" type="text" name="nama_penerima" class="form-control" required autocomplete="off" placeholder="Masukkan nama penerima disini.." value="<?= filter_var($pengeluaran["nama_penerima"]); ?>">
+            <input id="nama_penerima" type="text" name="nama_penerima" class="form-control" required autocomplete="off" placeholder="Masukkan nama penerima disini.." value="<?= $pengeluaran["nama_penerima"]; ?>">
           </div>
         </div>
         <div class="col-md-6">

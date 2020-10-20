@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset(filter_input(INPUT_SESSION, 'login'))) {
+if (!isset($_SESSION["login"])) {
   header("Location: login.php");
   exit;
 }
@@ -36,7 +36,7 @@ $daftar_anggota = query("SELECT * FROM anggota ORDER BY nama");
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Selamat Datang, <?= filter_input(INPUT_SESSION, 'username'); ?><span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">Selamat Datang, <?= $_SESSION["username"]; ?><span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link ml-3" href="dataAnggota.php"><i class="fas fa-users"></i></a>
@@ -53,7 +53,7 @@ $daftar_anggota = query("SELECT * FROM anggota ORDER BY nama");
           <li class="nav-item">
             <a class="nav-link ml-1" href="posisi.php"><i class="fas fa-file-invoice-dollar"></i></a>
           </li>
-          <?php if (isset(filter_input(INPUT_SESSION, 'sadmin'))) { ?>
+          <?php if (isset($_SESSION["sadmin"])) { ?>
             <li class="nav-item">
               <a class="nav-link ml-1" href="fakultas.php"><i class="fas fa-hotel"></i></a>
             </li>
@@ -71,7 +71,7 @@ $daftar_anggota = query("SELECT * FROM anggota ORDER BY nama");
   </nav>
 
   <?php
-  if (isset(filter_input(INPUT_POST, 'submit'))) {
+  if (isset($_POST["submit"])) {
     if (tambahPemasukan(filter_input_array(INPUT_POST)) > 0) { ?>
       <div class="alert alert-success" role="alert">
         Data berhasil ditambahkan, <a href="pemasukkan.php" class="alert-link">Klik disini untuk melihat tabel</a>.
@@ -101,7 +101,7 @@ $daftar_anggota = query("SELECT * FROM anggota ORDER BY nama");
         <label for="identitas">Identitas (Nama; Fakultas; No. Anggota) : </label>
         <select id="id" class="form-control" name="id">
           <?php foreach ($daftar_anggota as $row) : ?>
-            <option value="<?= filter_var($row["id"]); ?>"><?= filter_var($row["nama"]); ?> ; <?= filter_var($row["fakultas"]); ?> ; <?= filter_var($row["no_anggota"]); ?></option>
+            <option value="<?= $row["id"]; ?>"><?= $row["nama"]; ?> ; <?= $row["fakultas"]; ?> ; <?= $row["no_anggota"]; ?></option>
           <?php endforeach ?>
         </select>
       </div>

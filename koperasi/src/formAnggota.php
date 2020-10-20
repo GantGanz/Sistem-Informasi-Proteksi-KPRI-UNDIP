@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset(filter_input(INPUT_SESSION, 'login'))) {
+if (!isset($_SESSION["login"])) {
   header("Location: login.php");
   exit;
 }
@@ -36,7 +36,7 @@ $daftar_fakultas = query("SELECT * FROM fakultas");
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Selamat Datang, <?= filter_input(INPUT_SESSION, 'username'); ?><span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">Selamat Datang, <?= $_SESSION["username"]; ?><span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link ml-3" href="dataAnggota.php"><i class="fas fa-users"></i></a>
@@ -53,7 +53,7 @@ $daftar_fakultas = query("SELECT * FROM fakultas");
           <li class="nav-item">
             <a class="nav-link ml-1" href="posisi.php"><i class="fas fa-file-invoice-dollar"></i></a>
           </li>
-          <?php if (isset(filter_input(INPUT_SESSION, 'sadmin'))) { ?>
+          <?php if (isset($_SESSION["sadmin"])) { ?>
             <li class="nav-item">
               <a class="nav-link ml-1" href="fakultas.php"><i class="fas fa-hotel"></i></a>
             </li>
@@ -71,7 +71,7 @@ $daftar_fakultas = query("SELECT * FROM fakultas");
   </nav>
 
   <?php
-  if (isset(filter_input(INPUT_POST, 'submit'))) {
+  if (isset($_POST["submit"])) {
     if (tambah(filter_input_array(INPUT_POST)) > 0) { ?>
       <div class="alert alert-success" role="alert">
         Data berhasil ditambahkan, <a href="dataAnggota.php" class="alert-link">Klik disini untuk melihat tabel</a>.
@@ -121,7 +121,7 @@ $daftar_fakultas = query("SELECT * FROM fakultas");
             <label for="FUnitFakultas">Unit Fakultas : </label>
             <select id="FUnitFakultas" class="form-control" name="fakultas">
               <?php foreach ($daftar_fakultas as $row) : ?>
-                <option value="<?= filter_var($row["nama"]); ?>"><?= filter_var($row["nama"]); ?></option>
+                <option value="<?= $row["nama"]; ?>"><?= $row["nama"]; ?></option>
               <?php endforeach ?>
             </select>
           </div>

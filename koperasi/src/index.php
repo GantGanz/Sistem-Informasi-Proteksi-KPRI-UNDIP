@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset(filter_input(INPUT_SESSION, 'login'))) {
+if (!isset($_SESSION["login"])) {
     header("Location: login.php");
     exit;
 }
@@ -33,7 +33,7 @@ if (!isset(filter_input(INPUT_SESSION, 'login'))) {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Selamat Datang, <?= filter_input(INPUT_SESSION, 'username'); ?><span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#">Selamat Datang, <?= $_SESSION["username"]; ?><span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link ml-3" href="dataAnggota.php"><i class="fas fa-users"></i></a>
@@ -50,7 +50,7 @@ if (!isset(filter_input(INPUT_SESSION, 'login'))) {
                     <li class="nav-item">
                         <a class="nav-link ml-1" href="posisi.php"><i class="fas fa-file-invoice-dollar"></i></a>
                     </li>
-                    <?php if (isset(filter_input(INPUT_SESSION, 'sadmin'))) { ?>
+                    <?php if (isset($_SESSION["sadmin"])) { ?>
                         <li class="nav-item">
                             <a class="nav-link ml-1" href="fakultas.php"><i class="fas fa-hotel"></i></a>
                         </li>
@@ -120,7 +120,7 @@ if (!isset(filter_input(INPUT_SESSION, 'login'))) {
         </div>
     </div>
     <div class="container small">
-        <?php if (isset(filter_input(INPUT_SESSION, 'sadmin'))) { ?>
+        <?php if (isset($_SESSION["sadmin"])) { ?>
             <hr>
             <div class="text-center">
                 <h5>Fitur Tambahan untuk Super Admin</h5>

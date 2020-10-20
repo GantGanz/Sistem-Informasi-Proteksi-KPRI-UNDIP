@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset(filter_input(INPUT_SESSION, 'login'))) {
+if (!isset($_SESSION["login"])) {
     header("Location: login.php");
     exit;
 }
@@ -53,7 +53,7 @@ $pemasukan = query("SELECT * FROM pemasukan WHERE akhir >= NOW()");
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Selamat Datang, <?= filter_input(INPUT_SESSION, 'username'); ?><span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#">Selamat Datang, <?= $_SESSION["username"]; ?><span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link ml-3" href="dataAnggota.php"><i class="fas fa-users"></i></a>
@@ -70,7 +70,7 @@ $pemasukan = query("SELECT * FROM pemasukan WHERE akhir >= NOW()");
                     <li class="nav-item">
                         <a class="nav-link ml-1" href="posisi.php"><i class="fas fa-file-invoice-dollar"></i></a>
                     </li>
-                    <?php if (isset(filter_input(INPUT_SESSION, 'sadmin'))) { ?>
+                    <?php if (isset($_SESSION["sadmin"])) { ?>
                         <li class="nav-item">
                             <a class="nav-link ml-1" href="fakultas.php"><i class="fas fa-hotel"></i></a>
                         </li>
@@ -88,7 +88,7 @@ $pemasukan = query("SELECT * FROM pemasukan WHERE akhir >= NOW()");
     </nav>
 
     <?php
-    if (isset(filter_input(INPUT_GET, 'id'))) {
+    if (isset($_GET["id"])) {
         $id = filter_input(INPUT_GET, 'id');
         if (hapusPemasukan($id) > 0) { ?>
             <div class="alert alert-success" role="alert">
@@ -148,17 +148,17 @@ $pemasukan = query("SELECT * FROM pemasukan WHERE akhir >= NOW()");
                 $total = 0; ?>
                 <?php foreach ($pemasukan as $row) : ?>
                     <tr>
-                        <th><?= filter_var($i); ?></th>
-                        <td><?= filter_var($row["nama"]); ?></td>
-                        <td><?= filter_var($row["fakultas"]); ?></td>
-                        <td><?= filter_var($row["no_anggota"]); ?></td>
+                        <th><?= $i; ?></th>
+                        <td><?= $row["nama"]; ?></td>
+                        <td><?= $row["fakultas"]; ?></td>
+                        <td><?= $row["no_anggota"]; ?></td>
                         <?php
-                        $angka2 = filter_var($row["nominal_akhir"]);
-                        $total = $total + filter_var($row["nominal_akhir"]);
+                        $angka2 = $row["nominal_akhir"];
+                        $total = $total + $row["nominal_akhir"];
                         $angka_format2 = number_format($angka2, 2, ",", ".");
                         $angka_format = number_format($total, 2, ",", ".");
                         ?>
-                        <td>Rp<?= filter_var($angka_format2); ?></td>
+                        <td>Rp<?= $angka_format2; ?></td>
                     </tr>
                     <?php $i++ ?>
                 <?php endforeach ?>
@@ -170,7 +170,7 @@ $pemasukan = query("SELECT * FROM pemasukan WHERE akhir >= NOW()");
                     <?php
                     $angka_format = number_format($total, 2, ",", ".");
                     ?>
-                    <th>Rp<?= filter_var($angka_format); ?></th>
+                    <th>Rp<?= $angka_format; ?></th>
                 </tr>
             </tbody>
         </table>

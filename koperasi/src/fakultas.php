@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset(filter_input(INPUT_SESSION, 'login'))) {
+if (!isset($_SESSION["login"])) {
     header("Location: login.php");
     exit;
 }
@@ -9,7 +9,7 @@ require 'functions.php';
 
 $fakultas = query("SELECT * FROM fakultas");
 
-if (isset(filter_input(INPUT_POST, 'cari'))) {
+if (isset($_POST["cari"])) {
     $fakultas = cari(filter_input(INPUT_POST, 'keyword'));
 }
 ?>
@@ -41,7 +41,7 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Selamat Datang, <?= filter_input(INPUT_SESSION, 'username'); ?><span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#">Selamat Datang, <?= $_SESSION["username"]; ?><span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link ml-3" href="dataAnggota.php"><i class="fas fa-users"></i></a>
@@ -58,7 +58,7 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
                     <li class="nav-item">
                         <a class="nav-link ml-1" href="posisi.php"><i class="fas fa-file-invoice-dollar"></i></a>
                     </li>
-                    <?php if (isset(filter_input(INPUT_SESSION, 'sadmin'))) { ?>
+                    <?php if (isset($_SESSION["sadmin"])) { ?>
                         <li class="nav-item active">
                             <a class="nav-link ml-1" href="fakultas.php"><i class="fas fa-hotel"></i></a>
                         </li>
@@ -76,7 +76,7 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
     </nav>
 
     <?php
-    if (isset(filter_input(INPUT_POST, 'tambah'))) {
+    if (isset($_POST["tambah"])) {
         if (tambahFakultas(filter_input_array(INPUT_POST)) > 0) { ?>
             <div class="alert alert-success" role="alert">
                 Data berhasil ditambahkan.
@@ -100,7 +100,7 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
     ?>
 
     <?php
-    if (isset(filter_input(INPUT_GET, 'id'))) {
+    if (isset($_GET["id"])) {
         $id = filter_input(INPUT_GET, 'id');
         if (hapusFakultas($id) > 0) { ?>
             <div class="alert alert-success" role="alert">
@@ -125,7 +125,7 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
     ?>
 
     <?php
-    if (isset(filter_input(INPUT_POST, 'update'))) {
+    if (isset($_POST["update"])) {
         if (updateFakultas(filter_input_array(INPUT_POST)) > 0) { ?>
             <div class="alert alert-success" role="alert">
                 Data berhasil diupdate.
@@ -167,13 +167,13 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
         <div class="col-md-6">
             <form action="" method="POST" class="mb-3">
                 <?php
-                if (isset(filter_input(INPUT_GET, 'uid'))) {
+                if (isset($_GET["uid"])) {
                     $uid = filter_input(INPUT_GET, 'uid');
                     $ufakultas = query("SELECT * FROM fakultas WHERE id = $uid")[0];
                 ?>
                     <div class="input-group bm-3">
-                        <input type="hidden" name="id" value="<?= filter_var($ufakultas["id"]); ?>">
-                        <input class="form-control" type="text" name="updateFakultas" placeholder="Update nama fakultas disini.." autocomplete="off" required value="<?= filter_var($ufakultas["nama"]); ?>" autofocus>
+                        <input type="hidden" name="id" value="<?= $ufakultas["id"]; ?>">
+                        <input class="form-control" type="text" name="updateFakultas" placeholder="Update nama fakultas disini.." autocomplete="off" required value="<?= $ufakultas["nama"]; ?>" autofocus>
                         <div class="input-group-append">
                             <button type="submit" class="input-group-text btn btn-primary" name="update"><i class=" fas fa-pencil-alt"> Update</i></button>
                         </div>
@@ -194,10 +194,10 @@ if (isset(filter_input(INPUT_POST, 'cari'))) {
                 <?php $i = 1; ?>
                 <?php foreach ($fakultas as $row) : ?>
                     <tr>
-                        <th class="d-flex justify-content-center"><?= filter_var($i); ?></th>
-                        <td><?= filter_var($row["nama"]); ?></td>
-                        <td><a href="fakultas.php?uid=<?= filter_var($row["id"]); ?>"><i class="d-flex justify-content-center fas fa-pencil-alt"></i></a></td>
-                        <td><a href="fakultas.php?id=<?= filter_var($row["id"]); ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="d-flex justify-content-center fas fa-trash-alt"></i></a></td>
+                        <th class="d-flex justify-content-center"><?= $i; ?></th>
+                        <td><?= $row["nama"]; ?></td>
+                        <td><a href="fakultas.php?uid=<?= $row["id"]; ?>"><i class="d-flex justify-content-center fas fa-pencil-alt"></i></a></td>
+                        <td><a href="fakultas.php?id=<?= $row["id"]; ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="d-flex justify-content-center fas fa-trash-alt"></i></a></td>
                     </tr>
                     <?php $i++ ?>
                 <?php endforeach ?>

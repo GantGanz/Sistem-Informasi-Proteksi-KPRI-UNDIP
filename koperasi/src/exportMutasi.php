@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset(filter_input(INPUT_SESSION, 'login'))) {
+if (!isset($_SESSION["login"])) {
     header("Location: login.php");
     exit;
 }
@@ -35,15 +35,15 @@ header("Expires: 0");
             <?php $i = 1; ?>
             <?php foreach ($anggota as $row) : ?>
                 <tr>
-                    <th><?= filter_var($i); ?></th>
-                    <td><?= filter_var($row["tanggal"]); ?></td>
-                    <td><?= filter_var($row["keterangan"]); ?></td>
-                    <td><?= filter_var($row["kode"]); ?></td>
+                    <th><?= $i; ?></th>
+                    <td><?= $row["tanggal"]; ?></td>
+                    <td><?= $row["keterangan"]; ?></td>
+                    <td><?= $row["kode"]; ?></td>
                     <?php
-                    $angka = filter_var($row["jumlah"]);
+                    $angka = $row["jumlah"];
                     $angka_format = number_format($angka, 2, ",", ".");
                     ?>
-                    <td>Rp<?= filter_var($angka_format); ?></td>
+                    <td>Rp<?= $angka_format; ?></td>
                 </tr>
                 <?php $i++ ?>
             <?php endforeach ?>

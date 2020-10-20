@@ -1,5 +1,6 @@
 <?php
 $conn = mysqli_connect("localhost", "root", "", "koperasi");
+// $conn = mysqli_connect("localhost", "angger", "12345678", "koperasi");
 
 function query($query)
 {
@@ -29,6 +30,9 @@ function tambah($data)
     $nip = htmlspecialchars($data["nip"]);
     $no_anggota = htmlspecialchars($data["no_anggota"]);
     $no_hp = htmlspecialchars($data["no_hp"]);
+    // $awal = htmlspecialchars($data["awal"]);
+    // $nominal = htmlspecialchars($data["nominal"]);
+    // $akhir = htmlspecialchars($data["akhir"]);
 
     $query = "INSERT INTO anggota VALUES 
             ('', '$nama',  '$fakultas', '$nip', '$tempat_lahir', '$tanggal_lahir', '$rt', '$rw', '$desa', '$kecamatan', '$kabupaten', 
@@ -63,6 +67,9 @@ function update($data)
     $nip = htmlspecialchars($data["nip"]);
     $no_anggota = htmlspecialchars($data["no_anggota"]);
     $no_hp = htmlspecialchars($data["no_hp"]);
+    // $awal = htmlspecialchars($data["awal"]);
+    // $nominal = htmlspecialchars($data["nominal"]);
+    // $akhir = htmlspecialchars($data["akhir"]);
 
     $query = "UPDATE anggota SET 
                 nama = '$nama', tempat_lahir = '$tempat_lahir', tanggal_lahir = '$tanggal_lahir', 
@@ -234,18 +241,18 @@ function tambahPemasukan($data)
     $ada = false;
     $persentase = 0;
     foreach ($kemungkinan as $row) {
-        if ($nominal >= filter_var($row["min"]) && filter_var($row["max"]) >= $nominal) {
-            $persentase = filter_var($row["persentase"]);
+        if ($nominal >= $row["min"] && $row["max"] >= $nominal) {
+            $persentase = $row["persentase"];
         } else if ($row["max"] <= $nominal) {
-            $persentase = filter_var($row["persentase"]);
+            $persentase = $row["persentase"];
         }
     }
     if ($ada == false) {
         foreach ($kemungkinan2 as $row) {
-            if ($nominal >= filter_var($row["min"]) && $row["max"] >= $nominal) {
-                $persentase = filter_var($row["persentase"]);
-            } else if (filter_var($row["max"]) <= $nominal) {
-                $persentase = filter_var($row["persentase"]);
+            if ($nominal >= $row["min"] && $row["max"] >= $nominal) {
+                $persentase = $row["persentase"];
+            } else if ($row["max"] <= $nominal) {
+                $persentase = $row["persentase"];
             }
         }
     }
@@ -277,15 +284,15 @@ function updatePemasukkan($data)
     $kemungkinan2 = cariPersentaseAkhir();
     $ada = false;
     foreach ($kemungkinan as $row) {
-        if ($nominal >= filter_var($row["min"]) && filter_var($row["max"]) >= $nominal) {
-            $persentase = filter_var($row["persentase"]);
+        if ($nominal >= $row["min"] && $row["max"] >= $nominal) {
+            $persentase = $row["persentase"];
             $ada = true;
         }
     }
     if ($ada == false) {
         foreach ($kemungkinan2 as $row) {
-            if ($nominal >= filter_var($row["min"]) && filter_var($row["max"]) >= $nominal) {
-                $persentase = filter_var($row["persentase"]);
+            if ($nominal >= $row["min"] && $row["max"] >= $nominal) {
+                $persentase = $row["persentase"];
             }
         }
     }

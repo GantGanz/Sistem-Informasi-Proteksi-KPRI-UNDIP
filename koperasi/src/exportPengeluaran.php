@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset(filter_input(INPUT_SESSION, 'login'))) {
+if (!isset($_SESSION["login"])) {
     header("Location: login.php");
     exit;
 }
@@ -44,18 +44,18 @@ header("Expires: 0");
             <?php $i = 1; ?>
             <?php foreach ($pengeluaran as $row) : ?>
                 <tr>
-                    <th><?= filter_var($i); ?></th>
-                    <td><?= filter_var($row["nama"]); ?></td>
-                    <td><?= filter_var($row["fakultas"]); ?></td>
-                    <td><?= filter_var($row["no_anggota"]); ?></td>
-                    <td><?= filter_var($row["tgl_cair"]); ?></td>
+                    <th><?= $i; ?></th>
+                    <td><?= $row["nama"]; ?></td>
+                    <td><?= $row["fakultas"]; ?></td>
+                    <td><?= $row["no_anggota"]; ?></td>
+                    <td><?= $row["tgl_cair"]; ?></td>
                     <?php
-                    $angka = filter_var($row["nominal_cair"]);
+                    $angka = $row["nominal_cair"];
                     $angka_format = number_format($angka, 2, ",", ".");
                     ?>
-                    <td>Rp<?= filter_var($angka_format); ?></td>
-                    <td><?= filter_var($row["nama_penerima"]); ?></td>
-                    <td><?= filter_var($row["status"]); ?></td>
+                    <td>Rp<?= $angka_format; ?></td>
+                    <td><?= $row["nama_penerima"]; ?></td>
+                    <td><?= $row["status"]; ?></td>
                 </tr>
                 <?php $i++ ?>
             <?php endforeach ?>

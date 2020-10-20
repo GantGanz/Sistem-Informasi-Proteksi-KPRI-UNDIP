@@ -1,12 +1,13 @@
 <?php
 session_start();
-if (!isset(filter_input(INPUT_SESSION, 'login'))) {
+if (!isset($_SESSION["login"])) {
     header("Location: login.php");
     exit;
 }
 
 require 'functions.php';
 
+// $pemasukan = query("SELECT * FROM pemasukan WHERE akhir < NOW()");
 $pemasukan = query("SELECT * FROM pemasukan");
 header("Content-type: application/vnd-ms-excel");
 header("Content-Disposition: attachment; filename=data_hangus.xls");
@@ -39,19 +40,19 @@ header("Expires: 0");
             $total = 0;
             $angka_format = '0,00'; ?>
             <?php foreach ($pemasukan as $row) : ?>
-                <?php if (filter_var($row["akhir"]) < date("Y-m-d")) { ?>
+                <?php if ($row["akhir"] < date("Y-m-d")) { ?>
                     <tr>
-                        <th><?= filter_var($i); ?></th>
-                        <td><?= filter_var($row["nama"]); ?></td>
-                        <td><?= filter_var($row["fakultas"]); ?></td>
-                        <td><?= filter_var($row["no_anggota"]); ?></td>
+                        <th><?= $i; ?></th>
+                        <td><?= $row["nama"]; ?></td>
+                        <td><?= $row["fakultas"]; ?></td>
+                        <td><?= $row["no_anggota"]; ?></td>
                         <?php
-                        $angka2 = filter_var($row["nominal_akhir"]);
-                        $total = $total + filter_var($row["nominal_akhir"]);
+                        $angka2 = $row["nominal_akhir"];
+                        $total = $total + $row["nominal_akhir"];
                         $angka_format2 = number_format($angka2, 2, ",", ".");
                         $angka_format = number_format($total, 2, ",", ".");
                         ?>
-                        <td>Rp<?= filter_var($angka_format2); ?></td>
+                        <td>Rp<?= $angka_format2; ?></td>
                     </tr>
                     <?php $i++ ?>
                 <?php } ?>
@@ -61,7 +62,7 @@ header("Expires: 0");
                 <td></td>
                 <td></td>
                 <th>Total : </th>
-                <th>Rp<?= filter_var($angka_format); ?></th>
+                <th>Rp<?= $angka_format; ?></th>
             </tr>
         </tbody>
     </table>

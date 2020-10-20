@@ -36,22 +36,22 @@ $anggota = query($query);
         <?php $i = 1; ?>
         <?php foreach ($anggota as $row) : ?>
             <tr>
-                <th><?= filter_var($i); ?></th>
-                <td><?= filter_var($row["nama"]); ?></td>
-                <td><?= filter_var($row["tempat_lahir"]); ?></td>
-                <td><?= filter_var($row["tanggal_lahir"]); ?></td>
-                <td><?= filter_var($row["fakultas"]); ?></td>
-                <td><?= filter_var($row["rt"]); ?></td>
-                <td><?= filter_var($row["rw"]); ?></td>
-                <td><?= filter_var($row["desa"]); ?></td>
-                <td><?= filter_var($row["kecamatan"]); ?></td>
-                <td><?= filter_var($row["kabupaten"]); ?></td>
-                <td><?= filter_var($row["provinsi"]); ?></td>
-                <td><?= filter_var($row["nip"]); ?></td>
-                <td><?= filter_var($row["no_anggota"]); ?></td>
-                <td><?= filter_var($row["no_hp"]); ?></td>
-                <td><a href="updateAnggota.php?id=<?= filter_var($row["id"]); ?>"><i class=" fas fa-pencil-alt"></i></a></td>
-                <td><a href="dataAnggota.php?id=<?= filter_var($row["id"]); ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="fas fa-trash-alt"></i></a></td>
+                <th><?= $i; ?></th>
+                <td><?= $row["nama"]; ?></td>
+                <td><?= $row["tempat_lahir"]; ?></td>
+                <td><?= $row["tanggal_lahir"]; ?></td>
+                <td><?= $row["fakultas"]; ?></td>
+                <td><?= $row["rt"]; ?></td>
+                <td><?= $row["rw"]; ?></td>
+                <td><?= $row["desa"]; ?></td>
+                <td><?= $row["kecamatan"]; ?></td>
+                <td><?= $row["kabupaten"]; ?></td>
+                <td><?= $row["provinsi"]; ?></td>
+                <td><?= $row["nip"]; ?></td>
+                <td><?= $row["no_anggota"]; ?></td>
+                <td><?= $row["no_hp"]; ?></td>
+                <td><a href="updateAnggota.php?id=<?= $row["id"]; ?>"><i class=" fas fa-pencil-alt"></i></a></td>
+                <td><a href="dataAnggota.php?id=<?= $row["id"]; ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="fas fa-trash-alt"></i></a></td>
             </tr>
             <?php $i++ ?>
         <?php endforeach ?>
