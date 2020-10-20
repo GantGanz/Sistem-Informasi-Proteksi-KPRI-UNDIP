@@ -1,6 +1,7 @@
 <?php
 session_start();
-if (isset($_SESSION["login"])) {
+$_SESSION["login"] = false;
+if (true == filter_var($_SESSION["login"])) {
     header("Location: index.php");
     exit;
 }

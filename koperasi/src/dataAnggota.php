@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION["login"])) {
+if (true != filter_var($_SESSION["login"])) {
     header("Location: login.php");
     exit;
 }
