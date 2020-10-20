@@ -13,8 +13,6 @@ if (isset($_POST["login"])) {
 
     $result = mysqli_query($conn, "SELECT * FROM user WHERE BINARY username = '$username' AND password = '$password'");
 
-    $_SESSION["sadmin"] = false;
-
     $level = mysqli_fetch_assoc($result);
     if ($level != null) {
         if ($level['level'] == 1) {

@@ -57,7 +57,7 @@ $daftar_fakultas = query("SELECT * FROM fakultas");
           <li class="nav-item">
             <a class="nav-link ml-1" href="posisi.php"><i class="fas fa-file-invoice-dollar"></i></a>
           </li>
-          <?php if (true == (filter_var($_SESSION["sadmin"]))) { ?>
+          <?php if (isset($_SESSION["sadmin"])) { ?>
             <li class="nav-item">
               <a class="nav-link ml-1" href="fakultas.php"><i class="fas fa-hotel"></i></a>
             </li>
