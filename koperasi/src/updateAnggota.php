@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (true != filter_var($_SESSION["login"])) {
+if (!isset($_SESSION["login"])) {
   header("Location: login.php");
   exit;
 }
@@ -103,22 +103,22 @@ $daftar_fakultas = query("SELECT * FROM fakultas");
     <h2 class="alert alert-primary text-center mt-3 font-weight-bold">Form Data Anggota</h2>
     <a href="dataAnggota.php" class="kembali btn btn-secondary ml-2 printInv"><i class="fas fa-arrow-circle-left"> Kembali</i></a>
     <form action="" method="POST" class="font-weight-bold">
-      <input type="hidden" name="id" value="<?= $anggota["id"]; ?>">
+      <input type="hidden" name="id" value="<?= filter_var($anggota["id"]); ?>">
       <div class="form-group">
         <label for="FNama">Nama : </label>
-        <input id="FNama" type="text" name="nama" class="form-control" placeholder="Masukkan Nama Lengkap" required value="<?= $anggota["nama"]; ?>">
+        <input id="FNama" type="text" name="nama" class="form-control" placeholder="Masukkan Nama Lengkap" required value="<?= filter_var($anggota["nama"]); ?>">
       </div>
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
             <label for="FTempatLahir">Tempat Lahir : </label>
-            <input id="FTempatLahir" type="text" name="tempat_lahir" class="form-control" placeholder="Masukkan Tempat Lahir" required value="<?= $anggota["tempat_lahir"]; ?>">
+            <input id="FTempatLahir" type="text" name="tempat_lahir" class="form-control" placeholder="Masukkan Tempat Lahir" required value="<?= filter_var($anggota["tempat_lahir"]); ?>">
           </div>
         </div>
         <div class=" col-md-6">
           <div class="form-group">
             <label for="FTanggalLahir">Tanggal Lahir : </label>
-            <input id="FTanggalLahir" type="date" name="tanggal_lahir" class="form-control" placeholder="dd-mmm-yyyy" required value="<?= $anggota["tanggal_lahir"]; ?>">
+            <input id="FTanggalLahir" type="date" name="tanggal_lahir" class="form-control" placeholder="dd-mmm-yyyy" required value="<?= filter_var($anggota["tanggal_lahir"]); ?>">
           </div>
         </div>
       </div>
@@ -127,9 +127,9 @@ $daftar_fakultas = query("SELECT * FROM fakultas");
         <div class="col-md-6">
           <div class="form-group">
             <label for="FUnitFakultas">Unit Fakultas : </label>
-            <select id="FUnitFakultas" class="form-control" name="fakultas" value="<?= $anggota["fakultas"]; ?>">
+            <select id="FUnitFakultas" class="form-control" name="fakultas" value="<?= filter_var($anggota["fakultas"]); ?>">
               <?php foreach ($daftar_fakultas as $row) : ?>
-                <option value="<?= $row["nama"]; ?>" <?php if ($row["nama"] == $anggota["fakultas"]) : ?> selected="selected" <?php endif; ?>><?= $row["nama"]; ?></option>
+                <option value="<?= filter_var($row["nama"]); ?>" <?php if ($row["nama"] == $anggota["fakultas"]) : ?> selected="selected" <?php endif; ?>><?= filter_var($row["nama"]); ?></option>
               <?php endforeach ?>
             </select>
           </div>
@@ -137,7 +137,7 @@ $daftar_fakultas = query("SELECT * FROM fakultas");
         <div class="col-md-6">
           <div class="form-group">
             <label for="FNoHP">No HP : </label>
-            <input id="FNoHP" type="number" name="no_hp" class="form-control" placeholder="Masukkan Nomor HP" required value="<?= $anggota["no_hp"]; ?>">
+            <input id="FNoHP" type="number" name="no_hp" class="form-control" placeholder="Masukkan Nomor HP" required value="<?= filter_var($anggota["no_hp"]); ?>">
           </div>
         </div>
       </div>
@@ -145,24 +145,24 @@ $daftar_fakultas = query("SELECT * FROM fakultas");
         <label>Alamat Rumah : </label>
         <div class="row">
           <div class="col-sm">
-            <input type="number" name="rt" class="form-control" placeholder="RT" required value="<?= $anggota["rt"]; ?>">
+            <input type="number" name="rt" class="form-control" placeholder="RT" required value="<?= filter_var($anggota["rt"]); ?>">
           </div>
           <div class="col-sm">
-            <input type="number" name="rw" class="form-control" placeholder="RW" required value="<?= $anggota["rw"]; ?>">
+            <input type="number" name="rw" class="form-control" placeholder="RW" required value="<?= filter_var($anggota["rw"]); ?>">
           </div>
           <div class="col-sm">
-            <input type="text" name="desa" class="form-control" placeholder="Desa" required value="<?= $anggota["desa"]; ?>">
+            <input type="text" name="desa" class="form-control" placeholder="Desa" required value="<?= filter_var($anggota["desa"]); ?>">
           </div>
         </div>
         <div class="row mt-1">
           <div class="col-sm">
-            <input type="text" name="kecamatan" class="form-control" placeholder="Kecamatan" required value="<?= $anggota["kecamatan"]; ?>">
+            <input type="text" name="kecamatan" class="form-control" placeholder="Kecamatan" required value="<?= filter_var($anggota["kecamatan"]); ?>">
           </div>
           <div class="col-sm">
-            <input type="text" name="kabupaten" class="form-control" placeholder="Kabupaten" required value="<?= $anggota["kabupaten"]; ?>">
+            <input type="text" name="kabupaten" class="form-control" placeholder="Kabupaten" required value="<?= filter_var($anggota["kabupaten"]); ?>">
           </div>
           <div class="col-sm">
-            <input type="text" name="provinsi" class="form-control" placeholder="Provinsi" required value="<?= $anggota["provinsi"]; ?>">
+            <input type="text" name="provinsi" class="form-control" placeholder="Provinsi" required value="<?= filter_var($anggota["provinsi"]); ?>">
           </div>
         </div>
       </div>
@@ -170,13 +170,13 @@ $daftar_fakultas = query("SELECT * FROM fakultas");
         <div class="col-md-6">
           <div class="form-group">
             <label for="FNIP">NIP : </label>
-            <input id="FNIP" type="number" name="nip" class="form-control" placeholder="Masukkan NIP" required value="<?= $anggota["nip"]; ?>">
+            <input id="FNIP" type="number" name="nip" class="form-control" placeholder="Masukkan NIP" required value="<?= filter_var($anggota["nip"]); ?>">
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
             <label for="FNoAnggota">No. Anggota : </label>
-            <input id="FNoAnggota" type="number" name="no_anggota" class="form-control" placeholder="Masukkan Nomor Anggota" required value="<?= $anggota["no_anggota"]; ?>">
+            <input id="FNoAnggota" type="number" name="no_anggota" class="form-control" placeholder="Masukkan Nomor Anggota" required value="<?= filter_var($anggota["no_anggota"]); ?>">
           </div>
         </div>
       </div>

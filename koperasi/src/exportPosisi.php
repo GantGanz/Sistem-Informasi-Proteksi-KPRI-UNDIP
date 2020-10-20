@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (true != filter_var($_SESSION["login"])) {
+if (!isset($_SESSION["login"])) {
     header("Location: login.php");
     exit;
 }
@@ -46,14 +46,14 @@ header("Expires: 0");
         <tbody>
             <?php foreach ($pemasukkan as $row) : ?>
                 <tr>
-                    <td><?= $row["awal"]; ?></td>
-                    <td><?= $row["nama"]; ?></td>
+                    <td><?= filter_var($row["awal"]); ?></td>
+                    <td><?= filter_var($row["nama"]); ?></td>
                     <?php
                     $angka = $row["nominal_akhir"];
                     $totalPemasukan = $totalPemasukan + $angka;
                     $angka_format = number_format($angka, 2, ",", ".");
                     ?>
-                    <td>Rp<?= $angka_format; ?></td>
+                    <td>Rp<?= filter_var($angka_format); ?></td>
                 </tr>
             <?php endforeach ?>
         </tbody>
@@ -72,14 +72,14 @@ header("Expires: 0");
         <tbody>
             <?php foreach ($pengeluaran as $row) : ?>
                 <tr>
-                    <td><?= $row["tgl_cair"]; ?></td>
-                    <td><?= $row["nama"]; ?></td>
+                    <td><?= filter_var($row["tgl_cair"]); ?></td>
+                    <td><?= filter_var($row["nama"]); ?></td>
                     <?php
                     $angka = $row["nominal_cair"];
                     $totalPengeluaran = $totalPengeluaran + $angka;
                     $angka_format = number_format($angka, 2, ",", ".");
                     ?>
-                    <td>Rp<?= $angka_format; ?></td>
+                    <td>Rp<?= filter_var($angka_format); ?></td>
                 </tr>
             <?php endforeach ?>
         </tbody>
@@ -91,7 +91,7 @@ header("Expires: 0");
                 $angka_format = number_format($totalPemasukan, 2, ",", ".");
                 ?>
                 <td>Total Pemasukkan :</td>
-                <td>Rp<?= $angka_format; ?></td>
+                <td>Rp<?= filter_var($angka_format); ?></td>
             </tr>
             <?php
             $angka_format = number_format($totalPengeluaran, 2, ",", ".");
@@ -110,15 +110,15 @@ header("Expires: 0");
             ?>
             <tr>
                 <td>Total Pengeluaran :</td>
-                <td>Rp<?= $angka_format; ?></td>
+                <td>Rp<?= filter_var($angka_format); ?></td>
             </tr>
             <tr>
                 <td>Jumlah Pendapatan Periode Ini :</td>
-                <td><?php echo $negativ ? '-' : ''; ?>Rp<?= $jumlah_format; ?></td>
+                <td><?php echo $negativ ? '-' : ''; ?>Rp<?= filter_var($jumlah_format); ?></td>
             </tr>
             <tr>
                 <td>Saldo Sekarang :</td>
-                <td><?php echo $negativ2 ? '-' : ''; ?>Rp<?= $saldo_format; ?></td>
+                <td><?php echo $negativ2 ? '-' : ''; ?>Rp<?= filter_var($saldo_format); ?></td>
             </tr>
         </tbody>
     </table>

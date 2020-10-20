@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (true != filter_var($_SESSION["login"])) {
+if (!isset($_SESSION["login"])) {
     header("Location: login.php");
     exit;
 }
@@ -112,17 +112,17 @@ $pemasukan = query("SELECT * FROM pemasukan WHERE akhir < NOW() LIMIT $awalData,
             <span class="font-weight-light">Halaman : </span>
             <!-- <span class="invi">i</span> -->
             <?php if ($halamanAktif > 1) : ?>
-                <a class="back" href="?halaman=<?= $halamanAktif - 1; ?>">&laquo;</a>
+                <a class="back" href="?halaman=<?= filter_var($halamanAktif - 1); ?>">&laquo;</a>
             <?php endif; ?>
             <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
                 <?php if ($i == $halamanAktif) : ?>
-                    <a class="halamanSekarang" href="?halaman=<?= $i; ?>"><?= $i; ?></a>
+                    <a class="halamanSekarang" href="?halaman=<?= filter_var($i); ?>"><?= filter_var($i); ?></a>
                 <?php else : ?>
-                    <a href="?halaman=<?= $i; ?>"><?= $i; ?></a>
+                    <a href="?halaman=<?= filter_var($i); ?>"><?= filter_var($i); ?></a>
                 <?php endif; ?>
             <?php endfor; ?>
             <?php if ($halamanAktif < $jumlahHalaman) : ?>
-                <a class="next" href="?halaman=<?= $halamanAktif + 1; ?>">&raquo;</a>
+                <a class="next" href="?halaman=<?= filter_var($halamanAktif) + 1; ?>">&raquo;</a>
             <?php endif; ?>
         </div>
 
@@ -153,21 +153,21 @@ $pemasukan = query("SELECT * FROM pemasukan WHERE akhir < NOW() LIMIT $awalData,
                     ?>
                     <?php foreach ($pemasukan as $row) : ?>
                         <tr>
-                            <th><?= $i; ?></th>
-                            <td><?= $row["nama"]; ?></td>
-                            <td><?= $row["fakultas"]; ?></td>
-                            <td><?= $row["no_anggota"]; ?></td>
-                            <td><?= $row["awal"]; ?></td>
-                            <td><?= $row["akhir"]; ?></td>
+                            <th><?= filter_var($i); ?></th>
+                            <td><?= filter_var($row["nama"]); ?></td>
+                            <td><?= filter_var($row["fakultas"]); ?></td>
+                            <td><?= filter_var($row["no_anggota"]); ?></td>
+                            <td><?= filter_var($row["awal"]); ?></td>
+                            <td><?= filter_var($row["akhir"]); ?></td>
                             <?php
                             $angka = $row["nominal"];
                             $angka_format = number_format($angka, 2, ",", ".");
                             $angka2 = $row["nominal_akhir"];
                             $angka_format2 = number_format($angka2, 2, ",", ".");
                             ?>
-                            <td>Rp<?= $angka_format; ?></td>
-                            <td><?= $row["persentase"]; ?></td>
-                            <td>Rp<?= $angka_format2; ?></td>
+                            <td>Rp<?= filter_var($angka_format); ?></td>
+                            <td><?= filter_var($row["persentase"]); ?></td>
+                            <td>Rp<?= filter_var($angka_format2); ?></td>
                         </tr>
                         <?php $i++ ?>
                     <?php endforeach ?>

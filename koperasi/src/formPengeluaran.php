@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (true != filter_var($_SESSION["login"])) {
+if (!isset($_SESSION["login"])) {
   header("Location: login.php");
   exit;
 }
@@ -100,7 +100,7 @@ $daftar_anggota = query("SELECT * FROM anggota ORDER BY nama");
         <label for="id">Identitas (Nama, Fakultas; No. Anggota) : </label>
         <select id="id" class="form-control" name="id">
           <?php foreach ($daftar_anggota as $row) : ?>
-            <option value="<?= $row["id"]; ?>"><?= $row["nama"]; ?> ; <?= $row["fakultas"]; ?> ; <?= $row["no_anggota"]; ?></option>
+            <option value="<?= filter_var($row["id"]); ?>"><?= filter_var($row["nama"]); ?> ; <?= filter_var($row["fakultas"]); ?> ; <?= filter_var($row["no_anggota"]); ?></option>
           <?php endforeach ?>
         </select>
       </div>

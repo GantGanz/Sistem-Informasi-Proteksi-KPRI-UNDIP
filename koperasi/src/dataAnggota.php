@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (true != filter_var($_SESSION["login"])) {
+if (!isset($_SESSION["login"])) {
     header("Location: login.php");
     exit;
 }
@@ -130,16 +130,16 @@ if (isset($_POST["cari"])) {
                     <span class="font-weight-light">Halaman : </span>
                     <?php if ($halamanAktif > 1) : ?>
                         <a class="first" href="?halaman=<?= 1; ?>">First</a>
-                        <a class="back" href="?halaman=<?= $halamanAktif - 1; ?>">&laquo;</a>
+                        <a class="back" href="?halaman=<?= filter_var($halamanAktif) - 1; ?>">&laquo;</a>
                     <?php endif; ?>
                     <?php if ($halamanAktif == 1) {
                         echo '<span class="first invi">First</span>
                         <span class="back invi">&laquo;</span>';
                     } ?>
-                    <a class="halamanSekarang" href="?halaman=<?= $halamanAktif; ?>"><?= $halamanAktif; ?></a>
+                    <a class="halamanSekarang" href="?halaman=<?= filter_var($halamanAktif); ?>"><?= filter_var($halamanAktif); ?></a>
                     <?php if ($halamanAktif < $jumlahHalaman) : ?>
-                        <a class="next" href="?halaman=<?= $halamanAktif + 1; ?>">&raquo;</a>
-                        <a class="last" href="?halaman=<?= $jumlahHalaman; ?>">Last</a>
+                        <a class="next" href="?halaman=<?= filter_var($halamanAktif) + 1; ?>">&raquo;</a>
+                        <a class="last" href="?halaman=<?= filter_var($jumlahHalaman); ?>">Last</a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -157,7 +157,6 @@ if (isset($_POST["cari"])) {
                         <th scope="col" rowspan="2">NIP</th>
                         <th scope="col" rowspan="2">No. Anggota</th>
                         <th scope="col" rowspan="2">No. HP</th>
-                        <!-- <th scope="col" colspan="3">Akad Kredit Proteksi</th> -->
                         <th scope="col" rowspan="2" colspan="2">Aksi</th>
                     </tr>
                     <tr>
@@ -169,11 +168,6 @@ if (isset($_POST["cari"])) {
                         <th scope="col">Kecamatan</th>
                         <th scope="col">Kabupaten</th>
                         <th scope="col">Provinsi</th>
-                        <!-- <th scope="col">Awal</th>
-                        <th scope="col">Nominal</th>
-                        <th scope="col">Akhir</th> -->
-                        <!-- <th scope="col">Update</th>
-                    <th scope="col">Delete</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -185,29 +179,22 @@ if (isset($_POST["cari"])) {
                     ?>
                     <?php foreach ($anggota as $row) : ?>
                         <tr>
-                            <th><?= $i; ?></th>
-                            <td><?= $row["nama"]; ?></td>
-                            <td><?= $row["tempat_lahir"]; ?></td>
-                            <td><?= $row["tanggal_lahir"]; ?></td>
-                            <td><?= $row["fakultas"]; ?></td>
-                            <td><?= $row["rt"]; ?></td>
-                            <td><?= $row["rw"]; ?></td>
-                            <td><?= $row["desa"]; ?></td>
-                            <td><?= $row["kecamatan"]; ?></td>
-                            <td><?= $row["kabupaten"]; ?></td>
-                            <td><?= $row["provinsi"]; ?></td>
-                            <td><?= $row["nip"]; ?></td>
-                            <td><?= $row["no_anggota"]; ?></td>
-                            <td><?= $row["no_hp"]; ?></td>
-                            <!-- <td><?= $row["awal"]; ?></td>
-                            <?php
-                            $angka = $row["nominal"];
-                            $angka_format = number_format($angka, 2, ",", ".");
-                            ?>
-                            <td>Rp<?= $angka_format; ?></td>
-                            <td><?= $row["akhir"]; ?></td> -->
-                            <td><a href="updateAnggota.php?id=<?= $row["id"]; ?>"><i class=" fas fa-pencil-alt"></i></a></td>
-                            <td><a href="dataAnggota.php?id=<?= $row["id"]; ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="fas fa-trash-alt"></i></a></td>
+                            <th><?= filter_var($i); ?></th>
+                            <td><?= filter_var($row["nama"]); ?></td>
+                            <td><?= filter_var($row["tempat_lahir"]); ?></td>
+                            <td><?= filter_var($row["tanggal_lahir"]); ?></td>
+                            <td><?= filter_var($row["fakultas"]); ?></td>
+                            <td><?= filter_var($row["rt"]); ?></td>
+                            <td><?= filter_var($row["rw"]); ?></td>
+                            <td><?= filter_var($row["desa"]); ?></td>
+                            <td><?= filter_var($row["kecamatan"]); ?></td>
+                            <td><?= filter_var($row["kabupaten"]); ?></td>
+                            <td><?= filter_var($row["provinsi"]); ?></td>
+                            <td><?= filter_var($row["nip"]); ?></td>
+                            <td><?= filter_var($row["no_anggota"]); ?></td>
+                            <td><?= filter_var($row["no_hp"]); ?></td>
+                            <td><a href="updateAnggota.php?id=<?= filter_var($row["id"]); ?>"><i class=" fas fa-pencil-alt"></i></a></td>
+                            <td><a href="dataAnggota.php?id=<?= filter_var($row["id"]); ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="fas fa-trash-alt"></i></a></td>
                         </tr>
                         <?php $i++ ?>
                     <?php endforeach ?>
@@ -229,5 +216,3 @@ if (isset($_POST["cari"])) {
 </body>
 
 </html>
-
-<!-- id, nama, tempat_lahir, tanggal_lahir, fakultas, rt, rw, desa, kecamatan, kabupaten, provinsi, nip, no_anggota, no_hp, awal, nominal, akhir -->

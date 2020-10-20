@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (true != filter_var($_SESSION["login"])) {
+if (!isset($_SESSION["login"])) {
   header("Location: login.php");
   exit;
 }
@@ -102,12 +102,12 @@ $daftar_anggota = query("SELECT * FROM anggota ORDER BY nama");
     <h2 class="alert alert-primary text-center mt-3 font-weight-bold">Form Pemasukan</h2>
     <a href="pemasukkan.php" class="kembali btn btn-secondary ml-2 printInv"><i class="fas fa-arrow-circle-left"> Kembali</i></a>
     <form action="" method="POST" class="font-weight-bold">
-      <input type="hidden" name="idp" value="<?= $pemasukkan["id"]; ?>">
+      <input type="hidden" name="idp" value="<?= filter_var($pemasukkan["id"]); ?>">
       <div class="form-group">
         <label for="identitas">Identitas (Nama; Fakultas; No. Anggota) : </label>
-        <select id="id" class="form-control" name="id" value="<?= $pemasukkan["nama"]; ?> ; <?= $pemasukkan["fakultas"]; ?> ; <?= $pemasukkan["no_anggota"]; ?>">
+        <select id="id" class="form-control" name="id" value="<?= filter_var($pemasukkan["nama"]); ?> ; <?= filter_var($pemasukkan["fakultas"]); ?> ; <?= filter_var($pemasukkan["no_anggota"]); ?>">
           <?php foreach ($daftar_anggota as $row) : ?>
-            <option value="<?= $row["id"]; ?>" <?php if ($row["no_anggota"] == $pemasukkan["no_anggota"]) : ?> selected="selected" <?php endif; ?>><?= $row["nama"]; ?> ; <?= $row["fakultas"]; ?> ; <?= $row["no_anggota"]; ?></option>
+            <option value="<?= filter_var($row["id"]); ?>" <?php if ($row["no_anggota"] == $pemasukkan["no_anggota"]) : ?> selected="selected" <?php endif; ?>><?= filter_var($row["nama"]); ?> ; <?= filter_var($row["fakultas"]); ?> ; <?= filter_var($row["no_anggota"]); ?></option>
           <?php endforeach ?>
         </select>
       </div>
@@ -115,19 +115,19 @@ $daftar_anggota = query("SELECT * FROM anggota ORDER BY nama");
         <div class="col-md-6">
           <div class="form-group">
             <label for="FTanggalAkad">Tanggal Akad Kredit : </label>
-            <input id="FTanggalAkad" type="date" name="awal" class="form-control" required autocomplete="off" value="<?= $pemasukkan["awal"]; ?>">
+            <input id="FTanggalAkad" type="date" name="awal" class="form-control" required autocomplete="off" value="<?= filter_var($pemasukkan["awal"]); ?>">
           </div>
         </div>
         <div class=" col-md-6">
           <div class="form-group">
             <label for="FTanggalAkhir">Tanggal Akhir Proteksi : </label>
-            <input id="FTanggalAkhir" type="date" name="akhir" class="form-control" required autocomplete="off" value="<?= $pemasukkan["akhir"]; ?>">
+            <input id="FTanggalAkhir" type="date" name="akhir" class="form-control" required autocomplete="off" value="<?= filter_var($pemasukkan["akhir"]); ?>">
           </div>
         </div>
       </div>
       <div class="form-group">
         <label for="FNominal">Nominal Akad Kredit : </label>
-        <input id="FNominal" type="number" name="nominal" class="form-control" placeholder="Dalam Satuan Rupiah dan Tanpa Titik" required autocomplete="off" value="<?= $pemasukkan["nominal"]; ?>">
+        <input id="FNominal" type="number" name="nominal" class="form-control" placeholder="Dalam Satuan Rupiah dan Tanpa Titik" required autocomplete="off" value="<?= filter_var($pemasukkan["nominal"]); ?>">
       </div>
 
       <button type="reset" class="btn btn-danger mt-2"><i class="fas fa-trash"> RESET</i></button>

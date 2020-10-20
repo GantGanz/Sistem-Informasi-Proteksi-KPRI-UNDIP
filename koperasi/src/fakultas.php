@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (true != filter_var($_SESSION["login"])) {
+if (!isset($_SESSION["login"])) {
     header("Location: login.php");
     exit;
 }
@@ -172,8 +172,8 @@ if (isset($_POST["cari"])) {
                     $ufakultas = query("SELECT * FROM fakultas WHERE id = $uid")[0];
                 ?>
                     <div class="input-group bm-3">
-                        <input type="hidden" name="id" value="<?= $ufakultas["id"]; ?>">
-                        <input class="form-control" type="text" name="updateFakultas" placeholder="Update nama fakultas disini.." autocomplete="off" required value="<?= $ufakultas["nama"]; ?>" autofocus>
+                        <input type="hidden" name="id" value="<?= filter_var($ufakultas["id"]); ?>">
+                        <input class="form-control" type="text" name="updateFakultas" placeholder="Update nama fakultas disini.." autocomplete="off" required value="<?= filter_var($ufakultas["nama"]); ?>" autofocus>
                         <div class="input-group-append">
                             <button type="submit" class="input-group-text btn btn-primary" name="update"><i class=" fas fa-pencil-alt"> Update</i></button>
                         </div>
@@ -194,10 +194,10 @@ if (isset($_POST["cari"])) {
                 <?php $i = 1; ?>
                 <?php foreach ($fakultas as $row) : ?>
                     <tr>
-                        <th class="d-flex justify-content-center"><?= $i; ?></th>
-                        <td><?= $row["nama"]; ?></td>
-                        <td><a href="fakultas.php?uid=<?= $row["id"]; ?>"><i class="d-flex justify-content-center fas fa-pencil-alt"></i></a></td>
-                        <td><a href="fakultas.php?id=<?= $row["id"]; ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="d-flex justify-content-center fas fa-trash-alt"></i></a></td>
+                        <th class="d-flex justify-content-center"><?= filter_var($i); ?></th>
+                        <td><?= filter_var($row["nama"]); ?></td>
+                        <td><a href="fakultas.php?uid=<?= filter_var($row["id"]); ?>"><i class="d-flex justify-content-center fas fa-pencil-alt"></i></a></td>
+                        <td><a href="fakultas.php?id=<?= filter_var($row["id"]); ?>" onclick="return confirm('Apakah anda yakin menghapus data?');"><i class="d-flex justify-content-center fas fa-trash-alt"></i></a></td>
                     </tr>
                     <?php $i++ ?>
                 <?php endforeach ?>

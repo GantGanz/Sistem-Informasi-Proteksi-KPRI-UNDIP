@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (true != filter_var($_SESSION["login"])) {
+if (!isset($_SESSION["login"])) {
     header("Location: login.php");
     exit;
 }
@@ -151,17 +151,17 @@ $pemasukan = query("SELECT * FROM pemasukan");
                 <?php foreach ($pemasukan as $row) : ?>
                     <?php if ($row["akhir"] < date("Y-m-d")) { ?>
                         <tr>
-                            <th><?= $i; ?></th>
-                            <td><?= $row["nama"]; ?></td>
-                            <td><?= $row["fakultas"]; ?></td>
-                            <td><?= $row["no_anggota"]; ?></td>
+                            <th><?= filter_var($i); ?></th>
+                            <td><?= filter_var($row["nama"]); ?></td>
+                            <td><?= filter_var($row["fakultas"]); ?></td>
+                            <td><?= filter_var($row["no_anggota"]); ?></td>
                             <?php
                             $angka2 = $row["nominal_akhir"];
                             $total = $total + $row["nominal_akhir"];
                             $angka_format2 = number_format($angka2, 2, ",", ".");
                             $angka_format = number_format($total, 2, ",", ".");
                             ?>
-                            <td>Rp<?= $angka_format2; ?></td>
+                            <td>Rp<?= filter_var($angka_format2); ?></td>
                         </tr>
                         <?php $i++ ?>
                     <?php } ?>
@@ -171,7 +171,7 @@ $pemasukan = query("SELECT * FROM pemasukan");
                     <td></td>
                     <td></td>
                     <th>Total : </th>
-                    <th>Rp<?= $angka_format; ?></th>
+                    <th>Rp<?= filter_var($angka_format); ?></th>
                 </tr>
             </tbody>
         </table>
