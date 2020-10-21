@@ -121,7 +121,7 @@ $pemasukan = query("SELECT * FROM pemasukan WHERE akhir >= NOW()");
         <form action="" method="POST">
             <div class="form-row">
                 <div class="form-group col-md-3 mt-1">
-                    <h5 class="ml-5">Periode : <?= date("Y-m-d"); ?></h5>
+                    <h5 class="ml-5">Periode : <?= filter_var(date("Y-m-d")); ?></h5>
                 </div>
                 <div class="form-group col-md-6 printInv">
                     <a href="exportBerlaku.php" target="_blank" class="btn btn-warning ml-2"><i class="fas fa-file-excel"> Export</i></a>
